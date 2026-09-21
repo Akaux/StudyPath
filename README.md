@@ -18,3 +18,6 @@ O site possui trilhas organizadas por níveis, permitindo estudar de forma gradu
 
 As matérias comuns são divididas em **Ensino Fundamental I, Ensino Fundamental II, Ensino Médio, Aprofundamento do Ensino Médio e nível universitário**.
 
+Conta com um sistema de progresso completo e certificação interativa para estimular os estudantes.
+
+https://akaux.github.io/StudyPath/
