@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<title>Cursos Completos</title>
+<title>Trilha: cursos e preparação para o Provão Paulista</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="shortcut icon" href="https://cdn-icons.flaticon.com/svg/3914/3914115.svg?token=exp=1789970932~hmac=1c592645b2a220a9671b77ad598a1fc8" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🌿%3C/text%3E%3C/svg%3E">
 <style>
 *{box-sizing:border-box}
 :root{
@@ -197,6 +197,80 @@ fieldset.q legend{padding:0 6px;font-weight:700;color:var(--muted);font-size:.85
   main{padding:0;max-width:none}
   .cert{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+
+/* ===== Versão 2: visual suave e acolhedor ===== */
+:root{
+  --bg:#F5F4FB;--surface:#FFFFFF;--surface2:#EFEFFA;--ink:#2D3047;--muted:#666A85;--line:#E4E3F2;
+  --brand:#5A66D6;--on-brand:#FFFFFF;--hl:#FFE6B0;--hl-soft:#FFF5E0;--ok:#2C8A66;--ok-bg:#E3F4EC;--bad:#C24A5A;--bad-bg:#FBEBEE;
+  --ui:'Nunito',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --sh:0 6px 22px rgba(70,76,140,.08);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#171826;--surface:#20223A;--surface2:#292C4A;--ink:#ECEDF8;--muted:#A5A8C6;--line:#34375A;
+  --brand:#A9B2FF;--on-brand:#171829;--hl:#4A3F25;--hl-soft:#2B2820;--ok:#6FD0A6;--ok-bg:#17302A;--bad:#FF92A0;--bad-bg:#3A2128;--sh:none}}
+:root[data-theme="dark"]{
+  --bg:#171826;--surface:#20223A;--surface2:#292C4A;--ink:#ECEDF8;--muted:#A5A8C6;--line:#34375A;
+  --brand:#A9B2FF;--on-brand:#171829;--hl:#4A3F25;--hl-soft:#2B2820;--ok:#6FD0A6;--ok-bg:#17302A;--bad:#FF92A0;--bad-bg:#3A2128;--sh:none}
+body{background-image:none;font-size:1.02rem}
+.top{border-bottom:1px solid var(--line);box-shadow:var(--sh)}
+.logo{background:none;padding:0;color:var(--brand);font-size:1.5rem}
+.tab{border-radius:99px}
+.tab[aria-current="page"]{background:var(--surface2);color:var(--brand)}
+.n{background:var(--brand);color:var(--on-brand)}
+.icon-btn{border-radius:50%;border-color:var(--line)}
+.btn{border:1.5px solid transparent;border-radius:99px;padding:11px 22px;box-shadow:0 3px 10px rgba(90,102,214,.2);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{border-color:var(--line);background:var(--surface);color:var(--ink);box-shadow:none}
+.chip{background:var(--hl);color:#4A3B16;border:0;font-weight:800}
+:root[data-theme="dark"] .chip{color:#FFE6B0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip{color:#FFE6B0}}
+.bar{border:0;background:var(--surface2);height:10px}
+.bar>i{background:linear-gradient(90deg,var(--brand),#8FA0F5);border-radius:99px}
+.callout,.vid,.band{border:1px solid var(--line);border-radius:20px}
+.callout.ok{border-color:var(--ok)}
+.band{background:var(--hl-soft)}
+.nb,.page,.side,.row,.lv,.resume,.empty,fieldset.q,.res,.serie,.prep{border:1px solid var(--line);border-radius:22px;box-shadow:var(--sh)}
+.nb{border-radius:8px 22px 22px 8px;transition:transform .15s,box-shadow .15s}
+.nb:hover{border-color:var(--line);transform:translateY(-2px)}
+.cover{background:hsl(var(--h) 38% 52%)}
+.resume{border-left:8px solid hsl(var(--h) 40% 58%)}
+.lv{box-shadow:none;border-radius:18px}
+.opt{border-radius:14px;border:1.5px solid var(--line);transition:background .15s}
+.opt:hover{background:var(--surface2)}
+.lt{flex:none;width:26px;height:26px;border-radius:50%;background:var(--surface2);display:grid;place-items:center;font-size:.8rem}
+.opt.ok .lt{background:var(--ok);color:#fff}.opt.bad .lt{background:var(--bad);color:#fff}
+.lvl,.dsc{display:inline-block;border-radius:99px;padding:0 9px;font-size:.75rem;margin-left:6px;font-weight:800}
+.l1{background:var(--ok-bg);color:var(--ok)}.l2{background:var(--hl);color:#4A3B16}.l3{background:var(--bad-bg);color:var(--bad)}
+.dsc{background:var(--surface2);color:var(--muted)}
+.ctx{margin:0 0 12px;padding:12px 16px;background:var(--surface2);border-radius:14px;font-family:var(--doc);font-size:1.02rem;line-height:1.6}
+.tw{overflow-x:auto;margin:0 0 12px}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left}
+th{background:var(--surface2)}
+.gr{margin:0 0 12px;padding:12px 16px;background:var(--surface2);border-radius:14px}
+.gr figcaption{font-weight:800;margin-bottom:8px;font-size:.92rem}
+.gl{display:grid;grid-template-columns:minmax(90px,150px) 1fr 3.2ch;gap:10px;align-items:center;margin:5px 0;font-size:.9rem}
+.gb{height:14px;background:var(--surface);border-radius:99px;overflow:hidden}
+.gb i{display:block;height:100%;background:var(--brand);border-radius:99px}
+.mp{margin:0 0 12px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.mg{display:grid;gap:3px;width:min(220px,100%)}
+.mg i{aspect-ratio:1;border-radius:6px}
+.mp ul{list-style:none;margin:0;padding:0;font-size:.9rem}
+.mp li{display:flex;gap:8px;align-items:center;margin:3px 0}
+.mp li i{width:14px;height:14px;border-radius:4px;display:inline-block}
+.m0{background:#7FBF9A}.m1{background:#E8D07E}.m2{background:#B9B3C9}.m3{background:#7FB3E0}
+.exp{margin-top:12px;padding:12px 16px;border-radius:14px;background:var(--hl-soft);border-left:4px solid var(--brand);font-size:.96rem}
+.prep{display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:26px;padding:22px 26px;background:linear-gradient(135deg,var(--surface),var(--surface2));text-decoration:none;color:var(--ink)}
+.prep h2{margin:6px 0 4px}.prep p{margin:0;color:var(--muted)}
+.serie{padding:20px 24px;margin-bottom:18px;background:var(--surface);border-left:8px solid hsl(var(--h) 40% 58%)}
+.serie h2{margin:4px 0 6px}
+.serie summary{cursor:pointer;font-weight:800;color:var(--brand);margin:6px 0 10px}
+.cont{margin:0 0 14px;padding-left:1.1em;font-size:.95rem}.cont li{margin-bottom:6px}
+.fls{display:flex;gap:8px;flex-wrap:wrap}
+.fl{font:700 .92rem var(--ui);padding:8px 16px;border-radius:99px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.fl.on{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+.ar{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:10px;align-items:center;margin:6px 0;font-size:.92rem}
+.note{font-size:.88rem;color:var(--muted);margin-top:22px}
 </style>
 </head>
 <body>
@@ -205,6 +279,8 @@ fieldset.q legend{padding:0 6px;font-weight:700;color:var(--muted);font-size:.85
     <a class="logo" href="#/">Trilha</a>
     <nav class="tabs" aria-label="Principal">
       <a class="tab" data-tab="home" href="#/">Cursos</a>
+      <a class="tab" data-tab="provao" href="#/provao">Provão Paulista</a>
+      <a class="tab" data-tab="banco" href="#/banco">Questões</a>
       <a class="tab" data-tab="meus" href="#/meus">Meus cursos<span class="n" id="n-my" hidden></span></a>
       <a class="tab" data-tab="cert" href="#/certificados">Certificados<span class="n" id="n-cert" hidden></span></a>
     </nav>
@@ -405,6 +481,143 @@ mk('provao-humanas','Provão Paulista: Ciências Humanas','provao',48,'Hum','His
 ];
 
 /* =====================================================
+   VERSÃO 2: novas trilhas, banco de questões e trilhas por série
+   Pergunta do banco: [disciplina, área, bloco, dificuldade, enunciado, [5 alternativas], correta, explicação, extras]
+   extras: x (texto de apoio), tb (tabela), g (gráfico), m (mapa)
+   ===================================================== */
+const X=(d,a)=>(b,n,t,o,c,e,x)=>[d,a,b,n,t,o,c,e,x];
+const Ar=X('Artes','L'), En=X('Inglês','L'), Fi=X('Filosofia','H'), So=X('Sociologia','H'), Ma=X('Matemática','M'), Na=X('Natureza','N'), In=X('Interdisciplinar','I');
+const RAW=[
+/* ---- Artes ---- */
+Ar(0,1,'No Renascimento, a perspectiva foi usada para:',['criar a ilusão de profundidade em superfícies planas','eliminar o uso de cores','representar apenas figuras religiosas','abolir o estudo do corpo humano','negar a observação da natureza'],0,'A perspectiva linear permitiu representar o espaço tridimensional em superfícies planas, reflexo da valorização da razão e da observação da natureza no período.'),
+Ar(0,2,'O recurso predominante nessa imagem, típico do Barroco, é:',['o contraste entre luz e sombra (claro-escuro)','a pincelada solta do Impressionismo','a abstração geométrica do Cubismo','a perspectiva isométrica','o uso de cores chapadas sem volume'],0,'O claro-escuro dramatiza a cena com luz focada e sombras profundas. É característica central do Barroco, como em Caravaggio.',{x:'Descrição de uma pintura: numa cena noturna e escura, apenas o rosto da figura central é iluminado por um feixe de luz forte, enquanto o fundo se perde nas sombras.'}),
+Ar(1,1,'A Semana de Arte Moderna de 1922 teve como principal objetivo:',['reforçar os modelos acadêmicos europeus','romper com padrões tradicionais e buscar uma expressão artística nacional','promover exclusivamente a arte barroca mineira','divulgar o cinema falado','defender o Realismo do século XIX'],1,'Os modernistas criticaram o academicismo e propuseram uma arte livre, atenta à língua falada e à realidade do Brasil.'),
+Ar(1,2,'A metáfora da antropofagia propõe que o artista brasileiro:',['copie fielmente os modelos europeus','recuse qualquer influência externa','absorva criticamente referências estrangeiras e as recrie com identidade própria','abandone a cultura popular','produza apenas arte religiosa'],2,'Assim como o ritual antropofágico incorpora a força do outro, a proposta é “digerir” influências externas e reinventá-las.',{x:'No Manifesto Antropófago (1928), Oswald de Andrade propõe que a cultura brasileira “devore” as influências estrangeiras e as transforme em algo próprio.'}),
+Ar(2,2,'A Tropicália, movimento de 1967–68, caracterizou-se por:',['rejeitar toda influência estrangeira','misturar elementos da tradição popular com a vanguarda e criticar a realidade política','restringir-se à música erudita','defender o purismo do samba tradicional','ignorar a cultura de massa'],1,'Caetano Veloso, Gilberto Gil e Os Mutantes uniram guitarras elétricas, ritmos brasileiros e crítica social em plena ditadura.'),
+Ar(2,2,'O Teatro do Oprimido, criado por Augusto Boal, propõe que o espectador:',['apenas observe em silêncio','seja substituído por atores profissionais','participe da cena e proponha soluções para conflitos sociais','assista somente a tragédias gregas','evite discutir política'],2,'Boal criou o “espectador-ator”: o público entra em cena e experimenta alternativas, transformando o teatro em ferramenta de debate.'),
+Ar(3,3,'Uma obra contemporânea que ocupa uma sala inteira e convida o público a caminhar dentro dela é chamada de:',['instalação','xilogravura','afresco','natureza-morta','retrato'],0,'A instalação transforma o espaço em obra e costuma exigir participação do público, como nas experiências de Hélio Oiticica.'),
+Ar(3,3,'A capoeira e o samba de roda são reconhecidos como patrimônio cultural:',['material, por serem edifícios históricos','imaterial, por serem saberes e expressões transmitidos entre gerações','natural, por existirem na natureza','arqueológico, por serem objetos enterrados','industrial, por serem produtos fabricados'],1,'Patrimônio imaterial reúne práticas, saberes e celebrações transmitidos de geração em geração, como a roda de capoeira.'),
+/* ---- Inglês ---- */
+En(0,1,'Antes de ler um texto em inglês, observar título, imagens e fonte serve para:',['substituir a leitura do texto','antecipar o assunto e o gênero do texto','traduzir palavra por palavra','memorizar vocabulário isolado','ignorar o contexto'],1,'Pistas externas ativam o conhecimento prévio e ajudam a prever o conteúdo, estratégia chamada de skimming ou predição.'),
+En(0,2,'A palavra “actually”, em “Actually, I disagree with you”, significa:',['atualmente','na verdade','ultimamente','recentemente','agora mesmo'],1,'Actually é um falso cognato: significa “na verdade” ou “de fato”. “Atualmente” seria currently.'),
+En(1,2,'Esse texto pertence ao gênero:',['notícia','anúncio publicitário','carta formal','poema','receita'],1,'O imperativo (Hurry up), a promoção e o desconto mostram a intenção de convencer o consumidor, característica do anúncio.',{x:'“Sale! Everything 50% off this weekend only. Hurry up before it ends!”'}),
+En(1,2,'Em “She usually walks to school, but today she is taking the bus”, os tempos verbais indicam, respectivamente:',['hábito e ação em andamento','ação concluída e plano futuro','ação em andamento e hábito','condição hipotética e hábito','fato concluído e ação em andamento'],0,'“Usually walks” (simple present) mostra rotina; “is taking” (present continuous) mostra ação no momento, confirmada por today.'),
+En(2,2,'Em “They went to the beach yesterday”, o verbo went está no:',['simple past','present perfect','future simple','present continuous','past continuous'],0,'Went é o passado irregular de go, e yesterday confirma uma ação concluída no passado.'),
+En(2,3,'Em “You should see a doctor”, o modal should expressa:',['obrigação legal','conselho','habilidade','impossibilidade','permissão no passado'],1,'Should indica recomendação ou conselho. A obrigação forte seria expressa por must ou have to.'),
+En(3,3,'A ideia expressa por “Although” nesse trecho é de:',['causa','concessão (contraste)','conclusão','tempo','finalidade'],1,'Although introduz uma ideia que contrasta com a principal sem anulá-la: custo inicial maior, mas economia futura.',{x:'“Although renewable energy is more expensive at first, it saves money in the long run.”'}),
+En(3,3,'A afirmação sustentada pelo texto é:',['a maioria dos alunos vai a pé','o ônibus é o meio mais usado entre os citados','20% dos alunos usam o ônibus','55% dos alunos caminham','todos usam transporte público'],1,'Os números mostram o ônibus (55%) acima de ir a pé (20%). As demais alternativas invertem ou distorcem os dados.',{x:'“Only 20% of students walk to school, while 55% take the bus.”'}),
+/* ---- Filosofia ---- */
+Fi(0,1,'A passagem do mito ao logos, na Grécia antiga, significa:',['abandonar toda forma de explicação','substituir explicações sobrenaturais por argumentos racionais','aceitar a tradição sem crítica','negar a existência do conhecimento','restringir o pensamento aos sacerdotes'],1,'O logos (razão, discurso) passa a explicar o mundo por causas naturais e argumentos, em vez de narrativas sobre deuses.'),
+Fi(0,2,'A frase “penso, logo existo” é associada a:',['Hume, empirista','Descartes, racionalista','Platão, idealista','Marx, materialista','Sartre, existencialista'],1,'Descartes usou a dúvida metódica e encontrou no pensamento a primeira certeza indubitável.'),
+Fi(1,1,'O mito da caverna, de Platão, ilustra:',['a passagem da ignorância das aparências ao conhecimento verdadeiro','o triunfo do empirismo','a origem do Estado','o imperativo categórico','a luta de classes'],0,'O prisioneiro que sai da caverna descobre a realidade para além das sombras, símbolo da ascensão ao conhecimento das ideias.'),
+Fi(1,2,'O imperativo categórico de Kant orienta o agente a:',['agir buscando sempre o maior prazer','agir segundo regras que possam valer como lei universal','obedecer ao governante em qualquer caso','seguir apenas as próprias vontades','buscar o lucro'],1,'Para Kant, uma ação é moral se a regra que a orienta puder ser universalizada, independentemente das consequências.'),
+Fi(2,2,'Para Hobbes, o Estado soberano se justifica porque:',['o ser humano é naturalmente bom e pacífico','ele evita a guerra de todos contra todos','a propriedade deve ser abolida','o povo deve governar em assembleia permanente','o poder deriva apenas da tradição religiosa'],1,'Hobbes via o estado de natureza como violento: os indivíduos cedem direitos a um soberano em troca de segurança.'),
+Fi(2,3,'Hume criticou a ideia de causalidade necessária ao afirmar que:',['a relação causa e efeito é demonstrada pela lógica pura','é um hábito mental formado pela experiência repetida','só existe no mundo das ideias','é inata à alma','Deus a garante'],1,'Para o empirista Hume, observamos a sucessão dos eventos, mas a conexão necessária é projetada pelo hábito.'),
+Fi(3,3,'Para o existencialismo de Sartre, a frase significa que o ser humano:',['nasce com natureza fixa e imutável','constrói o que é por suas escolhas e responde por elas','é determinado por Deus','é guiado apenas pelo instinto','não pode ser livre'],1,'Não há essência humana prévia: somos livres e responsáveis por nos definirmos.',{x:'“A existência precede a essência.” (Jean-Paul Sartre)'}),
+Fi(3,3,'A expressão “banalidade do mal”, de Hannah Arendt, refere-se a:',['maldade exclusiva de pessoas monstruosas','atos terríveis praticados por pessoas comuns que deixam de pensar criticamente e apenas obedecem','ausência de leis','crença de que o mal não existe','falta de religião'],1,'Ao analisar o julgamento de Eichmann, Arendt mostrou que o mal pode nascer da irreflexão burocrática, não de uma monstruosidade.'),
+/* ---- Sociologia ---- */
+So(0,1,'Segundo Durkheim, os fatos sociais são:',['individuais, internos e voluntários','coletivos, exteriores ao indivíduo e coercitivos','exclusivamente econômicos','impossíveis de estudar cientificamente','determinados apenas pela biologia'],1,'Normas, leis e costumes existem antes de nós, atuam sobre nós e exercem pressão, mesmo sem percebermos.'),
+So(0,2,'Julgar outra cultura como inferior por usar padrões da própria cultura é:',['relativismo cultural','etnocentrismo','multiculturalismo','globalização','aculturação voluntária'],1,'Etnocentrismo toma a própria cultura como medida de todas as outras; o relativismo busca compreender cada cultura em seus termos.'),
+So(1,2,'O toyotismo se diferencia do fordismo por priorizar:',['produção em massa de produtos padronizados em estoque','produção flexível, sob demanda e com trabalhadores polivalentes','trabalho artesanal individual','linha de montagem rígida com tarefas únicas','ausência de tecnologia'],1,'O toyotismo (just in time) produz conforme a demanda, reduz estoques e exige polivalência, ao contrário da rigidez fordista.'),
+So(1,2,'A razão entre a renda média dos 20% mais ricos e a dos 20% mais pobres é:',['4','9','18','20','45'],2,'9.000 ÷ 500 = 18. A tabela evidencia a desigualdade: os mais ricos têm renda média 18 vezes maior.',{x:'Renda média mensal por grupo (valores fictícios para estudo).',tb:{h:['Grupo','Renda média (R$)'],r:[['20% mais pobres','500'],['60% intermediários','2.000'],['20% mais ricos','9.000']]}}),
+So(2,2,'Na classificação de Marshall, o direito ao voto é um direito:',['civil','político','social','econômico','ambiental'],1,'Direitos políticos garantem a participação no poder. Os civis protegem liberdades individuais; os sociais, o bem-estar (saúde, educação).'),
+So(2,2,'A Lei Maria da Penha (2006) é um exemplo de conquista dos movimentos:',['de mulheres e feministas','exclusivamente estudantis','de proprietários rurais','de empresas de tecnologia','sindicais patronais'],0,'A lei responde à luta contra a violência doméstica e mostra como a ação coletiva pode gerar políticas públicas.'),
+So(3,3,'O conceito de “capital cultural”, de Bourdieu, ajuda a explicar que a escola:',['é neutra e iguala todas as origens','pode reproduzir desigualdades ao valorizar saberes mais comuns nas classes favorecidas','não influencia a mobilidade social','existe apenas nas classes altas','não transmite cultura'],1,'Famílias com mais capital cultural (linguagem, hábitos, livros) levam vantagem em um sistema que premia esses códigos.'),
+So(3,3,'Florestan Fernandes contestou o “mito da democracia racial” ao mostrar que:',['não há desigualdades raciais no Brasil','as desigualdades raciais persistem apesar do discurso de harmonia','a escravidão não deixou efeitos','o racismo é um fenômeno recente','a miscigenação eliminou o preconceito'],1,'Seus estudos mostraram que a abolição não garantiu inclusão e que o discurso de harmonia mascara desigualdades.'),
+/* ---- Matemática ---- */
+Ma(0,1,'Um produto de R$ 80,00 recebe desconto de 15%. O novo preço é:',['R$ 12,00','R$ 65,00','R$ 68,00','R$ 70,00','R$ 72,00'],2,'15% de 80 = 12; 80 − 12 = 68.'),
+Ma(0,3,'Qual foi o aumento percentual de livros lidos de março para abril?',['25%','50%','100%','133%','167%'],4,'Aumento = 8 − 3 = 5; 5 ÷ 3 ≈ 1,67, ou seja, cerca de 167%.',{g:{t:'Livros lidos por mês',d:[['Janeiro',4],['Fevereiro',6],['Março',3],['Abril',8]]}}),
+Ma(1,2,'Uma função f(x) = 2x + 3 descreve o custo de uma corrida (x em km). O custo de 10 km é:',['R$ 13','R$ 20','R$ 23','R$ 26','R$ 30'],2,'f(10) = 2 · 10 + 3 = 23.'),
+Ma(1,3,'A média das notas da turma é, aproximadamente:',['6,0','6,5','7,0','7,5','8,0'],2,'Soma ponderada: 5·4 + 6·6 + 7·10 + 8·5 + 9·5 = 211; 211 ÷ 30 ≈ 7,0.',{x:'Distribuição das notas de uma turma de 30 alunos.',tb:{h:['Nota','Alunos'],r:[['5','4'],['6','6'],['7','10'],['8','5'],['9','5']]}}),
+Ma(2,2,'Lançando um dado honesto, a probabilidade de sair um número primo é:',['1/6','1/3','1/2','2/3','5/6'],2,'Os primos são 2, 3 e 5: três casos favoráveis em seis, ou seja, 1/2.'),
+Ma(2,3,'Um cilindro de raio 5 cm e altura 10 cm tem volume de (use π ≈ 3):',['150 cm³','250 cm³','500 cm³','750 cm³','1.500 cm³'],3,'V = π · r² · h = 3 · 25 · 10 = 750 cm³.'),
+/* ---- Ciências da Natureza ---- */
+Na(0,1,'Quando o gelo derrete, ocorre:',['uma reação química que forma nova substância','uma mudança de estado físico (fusão)','a decomposição da água','uma combustão','uma condensação'],1,'Fusão é a passagem do sólido para o líquido. A substância continua sendo água (H₂O).'),
+Na(0,2,'Em uma cadeia alimentar, os decompositores:',['produzem energia a partir da luz','transformam matéria orgânica morta em nutrientes reaproveitáveis','são sempre predadores','não participam dos ciclos','só existem em ambientes aquáticos'],1,'Fungos e bactérias decompõem restos e devolvem nutrientes ao ambiente, fechando os ciclos da matéria.'),
+Na(1,1,'Uma solução com pH 3 é:',['básica','neutra','ácida','um sal','insolúvel'],2,'pH menor que 7 indica meio ácido; 7 é neutro; acima de 7 é básico.'),
+Na(1,2,'Um carro percorre 150 km em 2 h. Sua velocidade média é:',['50 km/h','65 km/h','75 km/h','90 km/h','300 km/h'],2,'v = Δs ÷ Δt = 150 ÷ 2 = 75 km/h.'),
+Na(2,2,'A fotossíntese transforma energia luminosa em energia química e libera:',['gás carbônico','oxigênio','nitrogênio','metano','hidrogênio'],1,'6 CO₂ + 6 H₂O + luz → C₆H₁₂O₆ + 6 O₂: o oxigênio é liberado.'),
+Na(2,3,'Substituir carvão por energia eólica reduz a emissão por kWh em aproximadamente:',['2%','12%','40%','60%','98%'],4,'(820 − 12) ÷ 820 ≈ 0,985, cerca de 98%.',{x:'Emissões de CO₂ por fonte de eletricidade.',tb:{h:['Fonte','Emissão (g CO₂/kWh)'],r:[['Carvão','820'],['Gás natural','490'],['Solar','45'],['Eólica','12']]}}),
+/* ---- Interdisciplinares ---- */
+In(0,2,'(Geografia e Matemática) A pastagem ocupa que fração do mapa?',['1/6','1/4','1/3','1/2','2/3'],2,'Há 4 células de pastagem em 12: 4/12 = 1/3. Em mapas temáticos, a legenda associa cada cor a uma categoria.',{x:'Mapa de uso do solo de um município (cada quadrado tem a mesma área).',m:{rows:['FFPP','FFPC','AAPC'],leg:{F:'Floresta',P:'Pastagem',C:'Cidade',A:'Água'}}}),
+In(1,2,'(Sociologia e Matemática) Qual afirmação é sustentada pelos dados?',['O desemprego jovem caiu em todos os anos','O maior valor ocorreu em 2020','O desemprego em 2022 foi maior que em 2019','O desemprego não variou','Em 2021 houve aumento em relação a 2020'],1,'O pico foi 31% em 2020. As demais alternativas contrariam a tabela: houve alta de 2019 para 2020 e queda nos anos seguintes.',{x:'Taxa de desemprego entre jovens (valores fictícios para estudo).',tb:{h:['Ano','Desemprego jovem (%)'],r:[['2019','27'],['2020','31'],['2021','26'],['2022','21']]}}),
+In(2,2,'(Artes e História) A obra dialoga com o Manifesto Antropófago porque:',['reproduz o academicismo europeu','valoriza elementos nacionais por meio de uma linguagem moderna e deformada','ignora a identidade brasileira','imita o Realismo fotográfico','retrata a corte portuguesa'],1,'O título vem do tupi (“homem que come gente”). A deformação expressiva e a paisagem tropical afirmam uma identidade brasileira em linguagem de vanguarda.',{x:'Em Abaporu (1928), Tarsila do Amaral pintou uma figura de pés e mãos enormes e cabeça pequena, ao lado de um cacto e sob um sol.'}),
+In(2,3,'(Sociologia e Matemática) Segundo o gráfico, os 50% mais ricos recebem quantas vezes a parcela dos 50% mais pobres?',['cerca de 2 vezes','cerca de 3 vezes','cerca de 4 vezes','cerca de 5,7 vezes','cerca de 10 vezes'],3,'Os 50% mais pobres somam 1% + 14% = 15%. Então 85 ÷ 15 ≈ 5,7.',{x:'Participação na renda total (%), valores fictícios.',g:{t:'Participação na renda total (%)',max:100,d:[['10% mais pobres',1],['40% seguintes',14],['50% mais ricos',85]]}})
+];
+const BANK=RAW.map((r,id)=>({id,d:r[0],a:r[1],b:r[2],s:[1,2,3,3][r[2]],n:r[3],q:[r[4],r[5],r[6],Object.assign({e:r[7],n:r[3],d:r[0]},r[8]||{})]}));
+const qOf=(d,b)=>BANK.filter(x=>x.d===d&&x.b===b).map(x=>x.q);
+const qS=(s,a)=>shuffle(BANK.filter(x=>x.s===s&&x.a===a)).slice(0,6).map(x=>x.q);
+const L=(t,x,y)=>[t,x,y||t+' aula'];
+
+/* ---------- Novas trilhas (Artes, Inglês, Filosofia, Sociologia) ---------- */
+COURSES.splice(7,0,
+mk('artes','Artes','materia',335,'♪','Movimentos artísticos, modernismo brasileiro, música, teatro, cinema, arte contemporânea e interpretação de imagens, em 4 níveis.',[
+ {l:[L('Movimentos artísticos: do Renascimento ao Impressionismo','O Renascimento (séculos XV e XVI) valorizou a razão, a perspectiva e o corpo humano, com Leonardo da Vinci e Michelangelo. O Barroco trouxe contraste de luz e sombra e emoção intensa, como em Caravaggio e Aleijadinho. O Neoclassicismo retomou a ordem greco-romana, o Romantismo exaltou a emoção e o Impressionismo (Monet) pintou a impressão da luz em instantes.'),
+  L('Interpretação de imagens','Ler uma imagem é observar antes de concluir: o que está em primeiro plano, quais cores, linhas e formas dominam, qual a técnica e o contexto histórico. Depois, relacione os elementos à mensagem: uma charge usa exagero e ironia, uma propaganda busca convencer, uma pintura pode registrar ou criticar a sociedade. Na prova, a resposta correta é sempre sustentada por algo visível na imagem.')],q:qOf('Artes',0)},
+ {l:[L('Modernismo brasileiro e a Semana de 22','A Semana de Arte Moderna (São Paulo, 1922) rompeu com padrões acadêmicos e defendeu uma arte livre e nacional. Tarsila do Amaral (Abaporu), Anita Malfatti, Oswald de Andrade e Mário de Andrade buscaram uma identidade brasileira. O Manifesto Antropófago propôs “devorar” influências estrangeiras e transformá-las em algo novo.'),
+  L('Vanguardas europeias e suas influências','O Cubismo (Picasso) fragmenta os objetos em vários pontos de vista; o Expressionismo deforma formas para expressar emoção; o Surrealismo (Dalí) explora sonhos e inconsciente; o Dadaísmo questiona o que é arte. Os modernistas brasileiros reinterpretaram essas vanguardas com temas locais, como Portinari ao retratar trabalhadores e Di Cavalcanti ao retratar o povo.')],q:qOf('Artes',1)},
+ {l:[L('Música: elementos, gêneros e cultura brasileira','A música combina altura, duração, intensidade e timbre, organizados em ritmo, melodia e harmonia. No Brasil, samba, choro, baião, bossa nova, MPB e funk traduzem contextos sociais. A Tropicália (1967–68) misturou tradição e vanguarda e criticou a ditadura. Ouvir com atenção é relacionar letra, ritmo e época.'),
+  L('Teatro e cinema como linguagens','O teatro nasce na Grécia, com tragédia e comédia, e no Brasil se renova com o Teatro do Oprimido, de Augusto Boal, que transforma o público em participante. O cinema une imagem em movimento, som e montagem: enquadramento, plano e edição criam sentido. O Cinema Novo, de Glauber Rocha, buscava uma imagem brasileira, crítica e de baixo orçamento.')],q:qOf('Artes',2)},
+ {l:[L('Arte contemporânea: instalação, performance e arte urbana','A arte contemporânea rompe fronteiras entre linguagens: instalações ocupam espaços, performances usam o corpo e a arte urbana (grafite, lambe-lambe) leva a crítica à rua. No Brasil, Lygia Clark, Hélio Oiticica, Vik Muniz e Os Gêmeos criaram obras que pedem participação do público e questionam o que é arte.'),
+  L('Leitura crítica de obras e patrimônio cultural','Analisar uma obra exige cruzar forma, contexto e intenção: quem produziu, quando, para quem e com quais meios. O patrimônio cultural, material e imaterial (como o samba de roda e a capoeira), preserva a memória e a identidade. Questões interdisciplinares ligam arte a história, sociedade e tecnologia.')],q:qOf('Artes',3)}
+]),
+mk('ingles','Inglês','materia',200,'En','Interpretação textual, vocabulário contextual, gêneros textuais, tempos verbais e compreensão de textos no estilo das provas.',[
+ {l:[L('Interpretação textual em inglês: estratégias','Antes de traduzir, observe título, imagens, fonte e gênero: eles antecipam o assunto (skimming). Depois, busque informações específicas (scanning) e identifique a ideia principal de cada parágrafo. Cognatos (information, important) ajudam, mas cuidado com falsos cognatos: actually significa “na verdade”, e não “atualmente”.'),
+  L('Vocabulário contextual e palavras de ligação','O sentido de uma palavra depende do contexto: bank pode ser “banco” ou “margem do rio”. Prefixos e sufixos (un-, re-, -ful, -less) ajudam a deduzir significados. Conectivos como however (no entanto), therefore (portanto), although (embora) e because (porque) mostram oposição, conclusão, concessão e causa.')],q:qOf('Inglês',0)},
+ {l:[L('Gêneros textuais: notícia, tirinha, anúncio e e-mail','Cada gênero tem finalidade e linguagem próprias: a notícia informa fatos (headline e lead), a tirinha usa humor e imagem, o anúncio persuade e o e-mail pode ser formal ou informal. Reconhecer o gênero ajuda a prever vocabulário e objetivo, em cartazes, posts e letras de música.'),
+  L('Presente: simple present e present continuous','Use o simple present para hábitos e verdades gerais (She studies every day) e o present continuous para ações em andamento (She is studying now). Na terceira pessoa, o simple present recebe -s (works) e usa does/doesn’t em perguntas e negações. Palavras como always, usually, now e at the moment indicam o tempo.')],q:qOf('Inglês',1)},
+ {l:[L('Passado e futuro','O simple past narra fatos concluídos (I visited São Paulo last year); verbos regulares recebem -ed e os irregulares mudam (go → went). O futuro usa will para previsões e decisões imediatas e be going to para planos (We are going to travel). Marcadores como yesterday, ago, tomorrow e next week guiam a escolha.'),
+  L('Present perfect e verbos modais','O present perfect (have/has + particípio) liga passado e presente: I have lived here for five years. Modais expressam obrigação (must, have to), possibilidade (may, might), habilidade (can) e conselho (should). Em textos, o modal revela a atitude do autor: might indica incerteza, must indica certeza ou obrigação.')],q:qOf('Inglês',2)},
+ {l:[L('Compreensão de textos longos: argumentos e posicionamento','Em textos argumentativos, identifique a tese, os argumentos e a conclusão. Observe expressões de opinião (in my view, it is clear that) e de dados (according to, studies show). Distinguir fato de opinião e perceber o tom (neutro, irônico, crítico) é decisivo nas questões de inferência.'),
+  L('Texto, imagem e gráfico: leitura integrada','As provas combinam texto com infográficos, gráficos e charges. Leia primeiro título e legenda, depois relacione os dados às afirmações. Atenção a palavras que mudam a conclusão, como only, most, less than e at least, e confirme se a alternativa é sustentada pelo texto e não por conhecimento prévio.')],q:qOf('Inglês',3)}
+]),
+mk('filosofia','Filosofia','materia',265,'Φ','Ética, política, teoria do conhecimento e história da filosofia: antiga, moderna e contemporânea, em 4 níveis.',[
+ {l:[L('O que é filosofia: do mito ao logos','A filosofia surge na Grécia antiga (século VI a.C.) quando a explicação mítica do mundo cede espaço à razão, o logos. Filosofar é questionar, argumentar e buscar fundamentos, e não aceitar respostas prontas. Suas áreas principais são ética, política, epistemologia (conhecimento), metafísica e estética.'),
+  L('Teoria do conhecimento: razão e experiência','O racionalismo (Descartes) afirma que a razão é a fonte segura do conhecimento: “penso, logo existo”. O empirismo (Locke, Hume) defende que todo conhecimento vem da experiência sensível. Kant propôs uma síntese: conhecemos o mundo como ele aparece a nós, moldado por categorias da razão.')],q:qOf('Filosofia',0)},
+ {l:[L('Filosofia antiga: Sócrates, Platão e Aristóteles','Sócrates praticava a maiêutica, método de perguntas que leva o interlocutor a refletir. Platão separou o mundo sensível do mundo das ideias, ilustrado no mito da caverna. Aristóteles valorizou a observação, criou a lógica e defendeu que a felicidade (eudaimonia) vem de uma vida virtuosa.'),
+  L('Ética e moral','Moral é o conjunto de normas e costumes de uma sociedade; ética é a reflexão filosófica sobre essas normas. Para Aristóteles, a virtude é o meio-termo; para Kant, o dever segue o imperativo categórico (agir de modo que a regra valha para todos); no utilitarismo, a ação é boa se gera o maior bem-estar para o maior número.')],q:qOf('Filosofia',1)},
+ {l:[L('Filosofia política: contratualismo e poder','Hobbes defendeu um Estado forte para evitar a guerra de todos contra todos. Locke afirmou direitos naturais (vida, liberdade, propriedade) e o direito de resistência. Rousseau defendeu que o poder legítimo nasce da vontade geral. Maquiavel separou política e moral religiosa, analisando como o poder é conquistado e mantido.'),
+  L('Filosofia moderna: Descartes, Hume e Kant','Descartes usou a dúvida metódica para chegar a uma certeza: o cogito. Hume duvidou de conexões necessárias entre causa e efeito, que seriam hábito mental. Kant investigou os limites da razão e propôs a autonomia: sermos capazes de dar a nós mesmos a lei moral.')],q:qOf('Filosofia',2)},
+ {l:[L('Filosofia contemporânea: Nietzsche, Marx e existencialismo','Nietzsche criticou os valores tradicionais e propôs criar novos valores (“Deus está morto”). Marx analisou a alienação do trabalho e a luta de classes. Sartre afirmou que a existência precede a essência: somos livres e responsáveis por nossas escolhas, mesmo sem garantias.'),
+  L('Arendt, Foucault e os dilemas atuais','Hannah Arendt analisou o totalitarismo e a “banalidade do mal”, quando pessoas comuns obedecem sem pensar. Michel Foucault mostrou como o poder se exerce em escolas, prisões e hospitais por vigilância e disciplina. Hoje a filosofia discute ética em tecnologia, inteligência artificial, meio ambiente e liberdade digital.')],q:qOf('Filosofia',3)}
+]),
+mk('sociologia','Sociologia','materia',25,'Soc','Pensamento sociológico, cultura, trabalho, desigualdade, cidadania e movimentos sociais, em 4 níveis.',[
+ {l:[L('Pensamento sociológico: Comte, Durkheim, Marx e Weber','A sociologia surge no século XIX para explicar as transformações da sociedade industrial. Durkheim estudou os fatos sociais, forças coletivas que moldam o indivíduo. Marx analisou classes e conflito. Weber enfatizou a ação social e seus sentidos, e Comte defendeu o estudo científico da sociedade.'),
+  L('Cultura, identidade e diversidade','Cultura é o conjunto de valores, saberes e práticas de um grupo. Etnocentrismo é julgar outras culturas pela própria; relativismo cultural é compreendê-las em seus próprios termos. Identidades são construídas socialmente, e a diversidade brasileira vem de matrizes indígenas, africanas, europeias e asiáticas.')],q:qOf('Sociologia',0)},
+ {l:[L('Trabalho e transformações do mundo produtivo','No taylorismo, o trabalho é dividido em tarefas simples e controlado por tempo; no fordismo, a linha de montagem permite produção em massa; no toyotismo, a produção é flexível e sob demanda. Hoje, a tecnologia traz o trabalho remoto, a uberização e a precarização, que reabrem o debate sobre direitos trabalhistas.'),
+  L('Desigualdade social e estratificação','A desigualdade é a distribuição desigual de renda, poder e oportunidades, e pode ser medida por indicadores como o Índice de Gini. No Brasil, ela se cruza com raça, gênero e território, o que a sociologia chama de interseccionalidade. Mobilidade social é a possibilidade de mudar de posição social ao longo da vida.')],q:qOf('Sociologia',1)},
+ {l:[L('Cidadania e direitos','T. H. Marshall descreveu a cidadania em três dimensões: direitos civis (liberdade, justiça), políticos (voto, participação) e sociais (educação, saúde, trabalho). No Brasil, a Constituição de 1988 ampliou direitos, mas a distância entre a lei e a prática mostra que a cidadania é uma conquista contínua.'),
+  L('Movimentos sociais','Movimentos sociais são ações coletivas organizadas que reivindicam mudanças. Exemplos: movimentos negro, feminista, indígena, LGBTQIA+, estudantil e MST. Usam manifestações, redes sociais e articulação política, e já influenciaram leis, como o Estatuto da Igualdade Racial e a Lei Maria da Penha.')],q:qOf('Sociologia',2)},
+ {l:[L('Estado, poder e instituições','Weber define o Estado como a instituição que detém o monopólio legítimo da força. A dominação pode ser tradicional, carismática ou legal-racional. Família, escola, mídia e religião socializam os indivíduos, mas também podem reproduzir desigualdades, como discute Bourdieu com o conceito de capital cultural.'),
+  L('Sociologia brasileira e questões contemporâneas','Gilberto Freyre, Sérgio Buarque de Holanda e Florestan Fernandes interpretaram o Brasil: Florestan mostrou que o mito da democracia racial esconde desigualdades. Hoje a sociologia analisa redes sociais, desinformação, violência urbana, globalização e meio ambiente, sempre com dados e método.')],q:qOf('Sociologia',3)}
+])
+);
+
+/* ---------- Preparação por série: Provão I, II e III ---------- */
+const AREAS=['Linguagens','Matemática','Ciências da Natureza','Ciências Humanas'];
+const SER=[
+ {id:'provao-s1',sim:'sim1',serie:'1ª série',t:'Provão I',h:210,d:'Base de leitura, números, matéria e energia, mundo antigo e pensamento social, com os conteúdos e habilidades da primeira série.',
+  L:[L('Leitura, gêneros textuais e imagens','Habilidade: identificar finalidade e público de notícias, charges, tirinhas e anúncios; reconhecer a ideia central e inferir informações implícitas.','provão paulista 1ª série leitura interpretação'),L('Artes e Inglês na 1ª série','Habilidade: reconhecer movimentos artísticos e ler imagens; usar título, cognatos e conectivos para compreender textos em inglês.','provão paulista 1ª série artes inglês')],
+  M:[L('Porcentagem, razão e proporção','Habilidade: resolver problemas de desconto, aumento, regra de três e escala em situações do cotidiano.','porcentagem proporção regra de três ensino médio'),L('Funções e leitura de gráficos','Habilidade: interpretar tabelas e gráficos de barras e linhas; relacionar função do 1º grau a custos e velocidades.','função afim gráficos ensino médio')],
+  N:[L('Matéria, energia e unidades','Habilidade: distinguir mudança física de química, aplicar densidade e energia, e converter unidades em experimentos simples.','estados da matéria densidade ensino médio'),L('Ecologia e célula','Habilidade: relacionar cadeias alimentares, ciclos da matéria e a célula como unidade da vida, com foco ambiental.','ecologia cadeia alimentar célula ensino médio')],
+  H:[L('Filosofia e Sociologia: primeiros passos','Habilidade: explicar a passagem do mito ao logos, a teoria do conhecimento e os fatos sociais de Durkheim; distinguir etnocentrismo de relativismo.','filosofia sociologia 1ª série ensino médio'),L('História e Geografia: sociedade e território','Habilidade: ler mapas, climas e paisagens; relacionar formação do território brasileiro, escravidão e organização social.','história geografia 1º ano ensino médio')]},
+ {id:'provao-s2',sim:'sim2',serie:'2ª série',t:'Provão II',h:150,d:'Gêneros e língua em uso, funções e estatística, física e química do cotidiano, modernidade e mundo do trabalho, com os conteúdos e habilidades da segunda série.',
+  L:[L('Língua em uso e literatura','Habilidade: relacionar variação linguística, coesão e figuras de linguagem a efeitos de sentido; situar Romantismo, Realismo e Modernismo.','provão paulista 2ª série língua portuguesa literatura'),L('Música, teatro, cinema e inglês','Habilidade: interpretar manifestações artísticas em seu contexto; reconhecer tempos verbais e gêneros em textos de inglês.','provão paulista 2ª série artes inglês')],
+  M:[L('Estatística e probabilidade','Habilidade: calcular média, mediana e moda, e probabilidades simples a partir de tabelas e gráficos.','estatística probabilidade ensino médio'),L('Geometria e funções','Habilidade: aplicar áreas, volumes e funções em problemas contextualizados.','geometria funções 2º ano ensino médio')],
+  N:[L('Movimento, energia e eletricidade','Habilidade: resolver velocidade média, trabalho, potência e circuitos simples com unidades corretas.','física velocidade energia eletricidade ensino médio'),L('Ácidos, bases e genética','Habilidade: interpretar pH e reações químicas do dia a dia; aplicar as leis de Mendel em heredogramas e cruzamentos.','pH ácidos bases genética mendel')],
+  H:[L('Trabalho, cidadania e movimentos sociais','Habilidade: comparar taylorismo, fordismo e toyotismo; classificar direitos civis, políticos e sociais; reconhecer a ação de movimentos sociais.','sociologia trabalho cidadania movimentos sociais'),L('Ética, política e História moderna','Habilidade: relacionar contratualistas, Iluminismo e revoluções aos debates sobre poder e direitos.','filosofia política iluminismo revoluções')]},
+ {id:'provao-s3',sim:'sim3',serie:'3ª série',t:'Provão III',h:20,d:'Aprofundamento de todas as áreas e redação, com os conteúdos e habilidades da terceira série, rumo à classificação.',
+  L:[L('Interpretação avançada e inferência','Habilidade: comparar textos, identificar tese e argumentos, e reconhecer ironia, intertextualidade e posicionamento do autor.','enem interpretação de texto inferência'),L('Artes e Inglês: leitura integrada','Habilidade: analisar obras modernistas e contemporâneas; ler textos longos em inglês combinando texto, imagem e gráfico.','enem artes modernismo inglês interpretação'),L('Redação: estrutura e proposta de intervenção','Habilidade: organizar tese, argumentos com repertório sociocultural e uma proposta de intervenção detalhada, com agente, ação, meio e finalidade.','redação dissertativo argumentativa proposta de intervenção')],
+  M:[L('Probabilidade, geometria e problemas integrados','Habilidade: resolver problemas de probabilidade, volume e análise combinatória com dados de tabelas e gráficos.','enem matemática probabilidade geometria'),L('Matemática financeira e razões','Habilidade: calcular juros, aumentos sucessivos e razões entre grandezas em contextos sociais.','matemática financeira juros enem')],
+  N:[L('Energia, ambiente e sociedade','Habilidade: avaliar fontes de energia, emissões e fotossíntese, relacionando ciência, tecnologia e impacto ambiental.','enem energia fontes emissões'),L('Reações, ecologia e saúde','Habilidade: interpretar reações químicas, ciclos biogeoquímicos e dados de saúde pública.','enem química ecologia saúde')],
+  H:[L('Filosofia contemporânea e Sociologia brasileira','Habilidade: relacionar Nietzsche, Sartre, Arendt e Foucault a dilemas atuais; analisar desigualdade, capital cultural e democracia racial.','filosofia contemporânea sociologia brasileira enem'),L('Brasil contemporâneo e globalização','Habilidade: ler mapas, gráficos e textos sobre ditadura, redemocratização, globalização e meio ambiente.','história geografia brasil contemporâneo enem')]}
+];
+SER.forEach(s=>{
+  const c=mk(s.id,s.t+': '+s.serie,'serie',s.h,s.t.slice(7),s.d,[
+    {l:s.L,q:qS(+s.id.slice(-1),'L')},{l:s.M,q:qS(+s.id.slice(-1),'M')},{l:s.N,q:qS(+s.id.slice(-1),'N')},{l:s.H,q:qS(+s.id.slice(-1),'H')}]);
+  c.ln=AREAS; COURSES.push(c);
+});
+/* =====================================================
    ESTADO E PERSISTÊNCIA (localStorage protegido)
    ===================================================== */
 const KEY = 'trilha:v1';
@@ -447,7 +660,7 @@ function steps(c){
   const r=[];
   c.lv.forEach((lv,i)=>{
     lv.l.forEach((l,j)=>r.push({type:'aula',i,j,href:`#/curso/${c.id}/aula/${i}-${j}`,label:`Aula ${j+1}: ${l[0]}`}));
-    r.push({type:'prova',i,href:`#/curso/${c.id}/prova/${i}`,label:`Prova do nível ${LV[i]}`});
+    r.push({type:'prova',i,href:`#/curso/${c.id}/prova/${i}`,label:`Prova do nível ${LN(c,i)}`});
   });
   return r;
 }
@@ -505,6 +718,7 @@ function viewHome(){
     const c=going[0], n=nextStep(c), s=stats(c);
     h+=`<section class="resume" style="--h:${c.h}"><div><p class="small">Continue de onde parou</p><h2>${esc(c.t)}</h2><p class="meta">${esc(n.label)}</p>${bar(s.pct)}</div><a class="btn" href="${n.href}">Continuar</a></section>`;
   }
+  h+=`<a class="prep" href="#/provao"><div><span class="chip">Novo</span><h2>Preparação Provão Paulista por série</h2><p>Trilha própria e simulado para a 1ª, 2ª e 3ª séries, mais um simulado cumulativo.</p></div><span class="btn">Ver preparação</span></a>`;
   h+=`<h2 class="sec">Matérias do Ensino Médio</h2><div class="grid">${COURSES.filter(c=>c.cat==='materia').map(card).join('')}</div>`;
   h+=`<section class="band"><h2 class="sec">Foco no Provão Paulista</h2>
     <p class="lead">O Provão Paulista Seriado acompanha o Ensino Médio (1ª, 2ª e 3ª séries) e dá acesso a vagas em instituições públicas paulistas, como USP, Unesp, Unicamp, Univesp e Fatecs. Estes cursos cobrem as áreas da prova. Datas e regras mudam a cada edição, então confira o edital oficial.</p>
@@ -518,7 +732,7 @@ function row(c){
   return `<article class="row" style="--h:${c.h}">
     <div class="cover" aria-hidden="true">${esc(c.sym)}</div>
     <div>
-      ${c.cat==='provao'?'<span class="chip">Provão Paulista</span>':''}
+      ${(c.cat==='provao'||c.cat==='serie')?'<span class="chip">Provão Paulista</span>':''}
       <h3><a href="#/curso/${c.id}">${esc(c.t)}</a></h3>
       <p class="meta">${fin?'Curso concluído em '+fmt(p.cert.at):(n?'Próximo passo: '+esc(n.label):'Curso concluído')}</p>
       ${bar(s.pct)}
@@ -586,7 +800,7 @@ function side(c,act){
     const dn=lv.l.filter((_,j)=>p.d[i+'-'+j]).length;
     const all=dn===lv.l.length, ok=p.q[i]&&p.q[i].ok;
     const cur=(t,j)=> act&&act.type===t&&act.i===i&&(t==='prova'||act.j===j) ? ' aria-current="page"':'';
-    return `<details ${i===openLv||(n&&n.i===i)?'open':''}><summary><span>${LV[i]}</span><span class="cnt">${dn}/${lv.l.length}</span></summary><div class="lst">
+    return `<details ${i===openLv||(n&&n.i===i)?'open':''}><summary><span>${LN(c,i)}</span><span class="cnt">${dn}/${lv.l.length}</span></summary><div class="lst">
       ${lv.l.map((l,j)=>`<a href="#/curso/${c.id}/aula/${i}-${j}"${cur('aula',j)}>${p.d[i+'-'+j]?ICON.done:ICON.todo}<span>${esc(l[0])}</span></a>`).join('')}
       <a href="#/curso/${c.id}/prova/${i}"${cur('prova')}>${ok?ICON.done:(all?ICON.quiz:ICON.lock)}<span>Prova do nível</span></a>
     </div></details>`;
@@ -608,7 +822,7 @@ function overview(c){
     const pp=p||{d:{},q:{}};
     const dn=lv.l.filter((_,j)=>pp.d[i+'-'+j]).length, qz=pp.q[i];
     const st=qz&&qz.ok?`Prova aprovada (melhor nota: ${qz.best}%)`:(levelDone(c,i)?'Prova liberada':'Prova liberada após concluir as aulas');
-    return `<section class="lv"><h3>${LV[i]}</h3><p class="meta">${dn} de ${lv.l.length} aulas concluídas</p>
+    return `<section class="lv"><h3>${LN(c,i)}</h3><p class="meta">${dn} de ${lv.l.length} aulas concluídas</p>
       <ol>${lv.l.map((l,j)=>`<li><a href="#/curso/${c.id}/aula/${i}-${j}">${esc(l[0])}</a>${pp.d[i+'-'+j]?' (feita)':''}</li>`).join('')}</ol>
       <p class="meta" style="margin:0"><a href="#/curso/${c.id}/prova/${i}">${st}</a></p></section>`;
   }).join('');
@@ -639,7 +853,7 @@ function lessonView(c,i,j){
   const prev=st[idx-1], next=st[idx+1];
   const attrs=`data-c="${c.id}" data-i="${i}" data-j="${j}"`;
   return `<article class="page">
-    <nav class="crumb" aria-label="Você está aqui"><a href="#/">Cursos</a> / <a href="#/curso/${c.id}">${esc(c.t)}</a> / ${LV[i]}</nav>
+    <nav class="crumb" aria-label="Você está aqui"><a href="#/">Cursos</a> / <a href="#/curso/${c.id}">${esc(c.t)}</a> / ${LN(c,i)}</nav>
     <p class="small">Aula ${j+1} de ${c.lv[i].l.length}</p>
     <h1>${esc(l[0])}</h1>
     <div class="prose"><p>${esc(l[1])}</p></div>
@@ -656,25 +870,15 @@ function lessonView(c,i,j){
 let QZ=null;
 function quizView(c,i){
   const lv=c.lv[i], p=ensure(c.id);
-  const head=`<nav class="crumb"><a href="#/">Cursos</a> / <a href="#/curso/${c.id}">${esc(c.t)}</a> / ${LV[i]}</nav>`;
+  const head=`<nav class="crumb"><a href="#/">Cursos</a> / <a href="#/curso/${c.id}">${esc(c.t)}</a> / ${LN(c,i)}</nav>`;
   if(!levelDone(c,i)){
     const pend=lv.l.map((l,j)=>({l,j})).filter(x=>!p.d[i+'-'+x.j]);
-    return `<article class="page">${head}<h1>Prova do nível ${LV[i]}</h1><p class="prose">Conclua todas as aulas deste nível para liberar a prova. Faltam:</p>
+    return `<article class="page">${head}<h1>Prova do nível ${LN(c,i)}</h1><p class="prose">Conclua todas as aulas deste nível para liberar a prova. Faltam:</p>
       <ul class="prose">${pend.map(x=>`<li><a href="#/curso/${c.id}/aula/${i}-${x.j}">${esc(x.l[0])}</a></li>`).join('')}</ul></article>`;
   }
   const key=c.id+'-'+i;
   if(!QZ||QZ.key!==key) QZ={key,order:lv.q.map(q=>shuffle(q[1].map((_,k)=>k))),ans:lv.q.map(()=>null),sent:false,hits:0,pct:0,ok:false,newCert:false};
-  const qs=lv.q.map((q,k)=>{
-    const opts=QZ.order[k].map(o=>{
-      const chosen=QZ.ans[k]===o; let cls='opt', tag='';
-      if(QZ.sent){
-        if(o===q[2]){cls+=' ok';tag='<b class="tag">Resposta correta</b>';}
-        else if(chosen){cls+=' bad';tag='<b class="tag">Sua resposta</b>';}
-      } else if(chosen) cls+=' sel';
-      return `<label class="${cls}"><input type="radio" name="q${k}" value="${o}" data-q="${k}" ${chosen?'checked':''} ${QZ.sent?'disabled':''}><span>${esc(q[1][o])}</span>${tag}</label>`;
-    }).join('');
-    return `<fieldset class="q"><legend>Questão ${k+1} de ${lv.q.length}</legend><p class="qt">${esc(q[0])}</p>${opts}</fieldset>`;
-  }).join('');
+  const qs=lv.q.map((q,k)=>qHtml(q,k,lv.q.length,QZ)).join('');
   let res='';
   if(QZ.sent){
     const st=steps(c), idx=st.findIndex(s=>s.type==='prova'&&s.i===i), nx=st[idx+1];
@@ -687,16 +891,91 @@ function quizView(c,i){
       act=`<button class="btn" data-act="retry">Refazer prova</button> <a class="btn ghost" href="#/curso/${c.id}">Rever as aulas</a>`;
     }
     res=`<div class="res ${QZ.ok?'pass':'fail'}" id="res" tabindex="-1"><h2>${QZ.ok?'Aprovado':'Ainda não foi dessa vez'}</h2>
-      <p>Você acertou ${QZ.hits} de ${lv.q.length} questões (${QZ.pct}%). A nota mínima é 70%.${QZ.ok?'':' Revise o conteúdo e tente de novo.'}</p>
+      <p>Você acertou ${QZ.hits} de ${lv.q.length} questões (${QZ.pct}%). A nota mínima é ${MIN(lv.q.length)}%.${QZ.ok?'':' Revise o conteúdo e tente de novo.'}</p>
       ${QZ.newCert?'<p><strong>Você concluiu o curso e conquistou o certificado.</strong></p>':''}
       <div class="actions">${act}</div></div>`;
   }
   const answered=QZ.ans.filter(a=>a!==null).length;
-  return `<article class="page">${head}<h1>Prova do nível ${LV[i]}</h1>
-    <p class="prose" style="margin-bottom:1em">${lv.q.length} questões de múltipla escolha sobre o conteúdo do nível. Para ser aprovado, acerte pelo menos 70%.</p>
+  return `<article class="page">${head}<h1>Prova do nível ${LN(c,i)}</h1>
+    <p class="prose" style="margin-bottom:1em">${lv.q.length} questões de múltipla escolha sobre o conteúdo do nível. Para ser aprovado, acerte pelo menos ${MIN(lv.q.length)}%.</p>
     ${res}${qs}
     ${QZ.sent?'':`<div class="actions"><button class="btn" data-act="submitQuiz">Enviar respostas</button><span class="meta" id="cnt" style="margin:0">${answered} de ${lv.q.length} respondidas</span></div>`}
   </article>`;
+}
+
+/* =====================================================
+   VERSÃO 2: componentes de questão, Provão por série, banco e simulados
+   ===================================================== */
+const LN=(c,i)=>(c.ln&&c.ln[i])||LV[i];
+const MIN=n=>n<=2?50:70;
+if(!S.sim) S.sim={};
+const NV=['','Fácil','Médio','Difícil'];
+const AREA={L:'Linguagens',M:'Matemática',N:'Ciências da Natureza',H:'Ciências Humanas',I:'Interdisciplinar'};
+const SIMS={sim1:['Provão I: 1ª série',1],sim2:['Provão II: 2ª série',2],sim3:['Provão III: 3ª série',3],simcum:['Simulado cumulativo',0],banco:['Prática do banco de questões',-1]};
+let BF={d:'',n:0};
+function tbl(t){return `<div class="tw"><table><thead><tr>${t.h.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${t.r.map(r=>`<tr>${r.map(x=>`<td>${esc(x)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;}
+function chart(g){const m=g.max||Math.max(...g.d.map(x=>x[1]));return `<figure class="gr"><figcaption>${esc(g.t)}</figcaption>${g.d.map(([l,v])=>`<div class="gl"><span>${esc(l)}</span><div class="gb"><i style="width:${Math.round(v/m*100)}%"></i></div><b>${v}</b></div>`).join('')}</figure>`;}
+function mapa(m){const ks=Object.keys(m.leg);return `<figure class="mp"><div class="mg" style="grid-template-columns:repeat(${m.rows[0].length},1fr)" role="img" aria-label="Mapa temático. Legenda: ${esc(ks.map(k=>m.leg[k]).join(', '))}">${m.rows.join('').split('').map(ch=>`<i class="m${ks.indexOf(ch)}"></i>`).join('')}</div><ul>${ks.map((k,x)=>`<li><i class="m${x}"></i>${esc(m.leg[k])}</li>`).join('')}</ul></figure>`;}
+function qHtml(q,k,n,Z){
+  const x=q[3]||{};
+  const opts=Z.order[k].map((o,pos)=>{
+    const chosen=Z.ans[k]===o; let cls='opt', tag='';
+    if(Z.sent){ if(o===q[2]){cls+=' ok';tag='<b class="tag">Resposta correta</b>';} else if(chosen){cls+=' bad';tag='<b class="tag">Sua resposta</b>';} }
+    else if(chosen) cls+=' sel';
+    return `<label class="${cls}"><input type="radio" name="q${k}" value="${o}" data-q="${k}" ${chosen?'checked':''} ${Z.sent?'disabled':''}><b class="lt">${String.fromCharCode(65+pos)}</b><span>${esc(q[1][o])}</span>${tag}</label>`;
+  }).join('');
+  return `<fieldset class="q"><legend>Questão ${k+1} de ${n}${x.n?`<span class="lvl l${x.n}">${NV[x.n]}</span>`:''}${x.d?`<span class="dsc">${esc(x.d)}</span>`:''}</legend>${x.x?`<blockquote class="ctx">${esc(x.x)}</blockquote>`:''}${x.tb?tbl(x.tb):''}${x.g?chart(x.g):''}${x.m?mapa(x.m):''}<p class="qt">${esc(q[0])}</p>${opts}${Z.sent&&x.e?`<div class="exp"><strong>Explicação.</strong> ${esc(x.e)}</div>`:''}</fieldset>`;
+}
+function viewProvao(){
+  const best=k=>S.sim[k]?`Melhor nota: ${S.sim[k].best}%`:'Ainda sem nota';
+  const ser=SER.map(s=>{
+    const c=course(s.id), st=stats(c), p=P(c.id);
+    const cont=c.lv.map((lv,i)=>`<li><strong>${esc(LN(c,i))}:</strong> ${lv.l.map(l=>esc(l[0])).join('; ')}</li>`).join('');
+    return `<section class="serie" style="--h:${c.h}"><span class="chip">${s.serie}</span><h2>${esc(s.t)}</h2><p class="meta">${esc(s.d)}</p>
+      <details><summary>Conteúdos e habilidades</summary><ul class="cont">${cont}</ul></details>${bar(st.pct)}
+      <div class="actions" style="margin-top:14px"><a class="btn" data-act="start" data-id="${c.id}" href="#/curso/${c.id}">${p?'Continuar trilha':'Começar trilha'}</a><a class="btn ghost" href="#/praticar/${s.sim}">Fazer simulado</a><span class="meta" style="margin:0">${best(s.sim)}</span></div></section>`;
+  }).join('');
+  const ev={t:'Sua evolução (melhor nota em cada simulado)',max:100,d:['sim1','sim2','sim3','simcum'].map(k=>[SIMS[k][0].split(':')[0],S.sim[k]?S.sim[k].best:0])};
+  return `<section><h1>Preparação Provão Paulista</h1>
+    <p class="lead">Mantivemos os cursos por nível e adicionamos uma segunda organização: por série do Ensino Médio. Cada série tem trilha própria e um simulado separado; o cumulativo reúne os três anos.</p>
+    <div class="sec"></div>${ser}
+    <section class="serie" style="--h:260"><span class="chip">1ª a 3ª série</span><h2>Simulado cumulativo</h2><p class="meta">Questões sorteadas dos três anos, para acompanhar sua evolução até a classificação.</p>
+      ${chart(ev)}<div class="actions"><a class="btn" href="#/praticar/simcum">Fazer simulado cumulativo</a><a class="btn ghost" href="#/banco">Banco de questões</a></div></section>
+    <p class="note">Os simulados reúnem as quatro áreas (Linguagens, Matemática, Natureza e Humanas) mais questões interdisciplinares, e servem como treino. Confira o edital oficial da edição para número de questões, tempo e regras.</p></section>`;
+}
+function viewBanco(){
+  const ds=[...new Set(BANK.map(x=>x.d))];
+  const cnt=BANK.filter(x=>(!BF.d||x.d===BF.d)&&(!BF.n||x.n===BF.n)).length;
+  const chip=(k,v,l,on)=>`<button class="fl${on?' on':''}" data-act="bf" data-k="${k}" data-v="${v}" aria-pressed="${on}">${l}</button>`;
+  return `<section><h1>Banco de questões</h1><p class="lead">Questões com cinco alternativas, contextualizadas, com tabelas, gráficos, mapas e explicação detalhada de cada resposta. Pratique 10 por vez.</p>
+    <h2 class="sec">Disciplina</h2><div class="fls">${chip('d','','Todas',!BF.d)}${ds.map(d=>chip('d',d,d,BF.d===d)).join('')}</div>
+    <h2 class="sec">Dificuldade</h2><div class="fls">${chip('n',0,'Todas',!BF.n)}${[1,2,3].map(n=>chip('n',n,NV[n],BF.n===n)).join('')}</div>
+    <p class="meta" style="margin-top:20px">${cnt} questões neste filtro</p><a class="btn" href="#/praticar/banco">Praticar agora</a></section>`;
+}
+function pickQs(key){
+  const m=SIMS[key];
+  if(key==='banco') return shuffle(BANK.filter(x=>(!BF.d||x.d===BF.d)&&(!BF.n||x.n===BF.n))).slice(0,10);
+  if(key==='simcum') return shuffle(BANK).slice(0,20);
+  return BANK.filter(x=>x.s===m[1]).sort((a,b)=>'LMNHI'.indexOf(a.a)-'LMNHI'.indexOf(b.a));
+}
+function practiceView(key){
+  const m=SIMS[key]; if(!m) return viewProvao();
+  const sk='p:'+key;
+  if(!QZ||QZ.key!==sk){ const bk=pickQs(key); QZ={key:sk,bk,order:bk.map(x=>shuffle(x.q[1].map((_,k)=>k))),ans:bk.map(()=>null),sent:false,hits:0,pct:0}; }
+  const n=QZ.bk.length, back=key==='banco'?'<a href="#/banco">Banco de questões</a>':'<a href="#/provao">Provão Paulista</a>';
+  if(!n) return `<article class="page"><h1>${m[0]}</h1><p class="prose">Nenhuma questão com esses filtros. <a href="#/banco">Mudar filtros</a>.</p></article>`;
+  let res='';
+  if(QZ.sent){
+    const ar={}; QZ.bk.forEach((x,k)=>{const a=ar[x.a]||(ar[x.a]=[0,0]);a[1]++;if(QZ.ans[k]===x.q[2])a[0]++;});
+    res=`<div class="res ${QZ.pct>=60?'pass':'fail'}" id="res" tabindex="-1"><h2>Você acertou ${QZ.hits} de ${n} (${QZ.pct}%)</h2><p>Veja o desempenho por área e leia a explicação de cada questão abaixo.</p>
+      ${Object.keys(ar).map(a=>`<div class="ar"><span>${AREA[a]} (${ar[a][0]}/${ar[a][1]})</span>${bar(Math.round(ar[a][0]/ar[a][1]*100))}</div>`).join('')}
+      <div class="actions"><button class="btn" data-act="retry">Refazer</button><a class="btn ghost" href="${key==='banco'?'#/banco':'#/provao'}">Voltar</a></div></div>`;
+  }
+  const ans=QZ.ans.filter(a=>a!==null).length;
+  return `<article class="page"><nav class="crumb">${back} / ${m[0]}</nav><h1>${m[0]}</h1>
+    ${QZ.sent?'':`<p class="prose" style="margin-bottom:1em">${n} questões de cinco alternativas. As explicações aparecem depois do envio.</p>`}${res}
+    ${QZ.bk.map((x,k)=>qHtml(x.q,k,n,QZ)).join('')}
+    ${QZ.sent?'':`<div class="actions"><button class="btn" data-act="submitSim" data-k="${key}">Enviar respostas</button><span class="meta" id="cnt" style="margin:0">${ans} de ${n} respondidas</span></div>`}</article>`;
 }
 
 /* =====================================================
@@ -720,6 +999,9 @@ function render(){
   const c=course(b);
   let html='', tab='home';
   if(a==='meus'){ tab='meus'; html=viewMy(); }
+  else if(a==='provao'){ tab='provao'; html=viewProvao(); }
+  else if(a==='banco'){ tab='banco'; html=viewBanco(); }
+  else if(a==='praticar'){ tab=b==='banco'?'banco':'provao'; html=practiceView(b); }
   else if(a==='certificados'){ tab='cert'; html=viewCerts(); }
   else if(a==='certificado'&&c){ tab='cert'; html=certView(c); }
   else if(a==='curso'&&c){
@@ -774,12 +1056,21 @@ document.addEventListener('click',e=>{
     const c=course(cid), lv=c.lv[lvi];
     if(QZ.ans.some(a=>a===null)){ toast('Responda todas as questões antes de enviar.'); return; }
     const hits=lv.q.filter((q,k)=>QZ.ans[k]===q[2]).length;
-    const pct=Math.round(hits/lv.q.length*100), ok=pct>=70;
+    const pct=Math.round(hits/lv.q.length*100), ok=pct>=MIN(lv.q.length);
     const p=ensure(c.id), prev=p.q[lvi]||{best:0,ok:false};
     p.q[lvi]={best:Math.max(prev.best,pct),ok:prev.ok||ok,at:Date.now()}; p.t=Date.now(); save();
     QZ.sent=true; QZ.hits=hits; QZ.pct=pct; QZ.ok=ok; QZ.newCert=ok?checkCert(c):false;
     render();
     const r=$('#res'); if(r){ r.scrollIntoView({block:'start'}); r.focus({preventScroll:true}); }
+  }
+  else if(act==='bf'){ BF[el.dataset.k]=el.dataset.k==='n'?+el.dataset.v:el.dataset.v; render(); }
+  else if(act==='submitSim'){
+    if(!QZ||!QZ.bk) return;
+    if(QZ.ans.some(a=>a===null)){ toast('Responda todas as questões antes de enviar.'); return; }
+    const hits=QZ.bk.filter((x,k)=>QZ.ans[k]===x.q[2]).length, pct=Math.round(hits/QZ.bk.length*100), k=el.dataset.k;
+    QZ.sent=true; QZ.hits=hits; QZ.pct=pct;
+    if(k!=='banco'){ const o=S.sim[k]||{best:0,h:[]}; o.best=Math.max(o.best,pct); o.h=(o.h||[]).concat([[Date.now(),pct]]).slice(-10); S.sim[k]=o; save(); }
+    render(); const r=$('#res'); if(r){ r.scrollIntoView({block:'start'}); r.focus({preventScroll:true}); }
   }
   else if(act==='retry'){ QZ=null; render(); window.scrollTo(0,0); }
   else if(act==='saveName'){
@@ -791,7 +1082,7 @@ document.addEventListener('click',e=>{
   }
   else if(act==='reset'){
     if(!armReset){ armReset=true; render(); }
-    else { S.c={}; save(); armReset=false; toast('Progresso apagado'); render(); }
+    else { S.c={}; S.sim={}; save(); armReset=false; toast('Progresso apagado'); render(); }
   }
 });
 document.addEventListener('change',e=>{
