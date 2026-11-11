@@ -271,6 +271,44 @@ th{background:var(--surface2)}
 .fl.on{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
 .ar{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:10px;align-items:center;margin:6px 0;font-size:.92rem}
 .note{font-size:.88rem;color:var(--muted);margin-top:22px}
+
+/* ===== Flashcards ===== */
+.fc-wrap{max-width:760px;margin:0 auto}
+.fc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.fc-modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:18px 0 6px}
+.fc-mode{display:flex;flex-direction:column;gap:4px;text-align:left;padding:18px;border:1.5px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+.fc-mode b{font-size:1.1rem}.fc-mode span{color:var(--muted);font-size:.92rem}
+.fc-mode[aria-pressed="true"]{border-color:var(--brand);background:var(--surface2);box-shadow:0 0 0 2px var(--brand)}
+.fc-stats{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+.fc-pill{padding:6px 14px;border-radius:99px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-size:.95rem}
+.fc-pill.ok{background:var(--ok-bg);color:var(--ok);border-color:var(--ok)}
+.fc-pill.bad{background:var(--bad-bg);color:var(--bad);border-color:var(--bad)}
+.fc-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.fc-top h1{font-size:1.35rem;margin:0}
+.fc-timer{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:10px;z-index:60;background:var(--surface2);border-bottom:1px solid var(--line)}
+.fc-timer i{display:block;height:100%;width:100%;transform-origin:left center;background:var(--ok);will-change:transform}
+.fc-card{perspective:1200px;margin:16px 0;cursor:pointer}
+.fc-in{display:grid;transition:transform .5s;transform-style:preserve-3d}
+.fc-card.flip .fc-in{transform:rotateY(180deg)}
+.fc-face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;min-height:300px;padding:clamp(20px,4vw,34px);
+  border:1px solid var(--line);border-radius:22px;background:var(--surface);box-shadow:var(--sh,none);display:flex;flex-direction:column;justify-content:center;gap:10px}
+.fc-back{transform:rotateY(180deg);background:var(--surface2)}
+.fc-q{font-family:var(--doc);font-size:clamp(1.1rem,2.6vw,1.35rem);line-height:1.6;margin:0}
+.fc-back p{font-family:var(--doc);font-size:1.08rem;line-height:1.6;margin:0 0 .35em}
+.fc-back p.fc-last{font-weight:600;background:var(--hl-soft);border-left:4px solid var(--brand);padding:8px 12px;border-radius:8px;margin-top:.5em}
+.fc-hint{color:var(--muted);font-size:.85rem;margin:6px 0 0}
+.fc-m{overflow-wrap:anywhere}
+.fc-fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.92em;margin:0 .15em}
+.fc-fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .25em}
+.fc-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.fc-actions .btn{min-width:150px}
+.fc-errb{background:var(--bad-bg);color:var(--bad);border-color:var(--bad)!important;box-shadow:none}
+.fc-okb{background:var(--ok-bg);color:var(--ok);border-color:var(--ok)!important;box-shadow:none}
+.fc-info{text-align:center;color:var(--muted);font-size:.9rem;margin:10px 0 0;min-height:1.4em}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:18px 0}
+.fc-big{padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--surface2);text-align:center}
+.fc-big b{display:block;font-size:2rem;line-height:1.1}.fc-big span{color:var(--muted);font-size:.88rem}
+@media (prefers-reduced-motion:reduce){.fc-in{transition:none}}
 </style>
 </head>
 <body>
@@ -281,6 +319,7 @@ th{background:var(--surface2)}
       <a class="tab" data-tab="home" href="#/">Cursos</a>
       <a class="tab" data-tab="provao" href="#/provao">Provão Paulista</a>
       <a class="tab" data-tab="banco" href="#/banco">Questões</a>
+      <a class="tab" data-tab="flash" href="#/flash">Flashcards</a>
       <a class="tab" data-tab="meus" href="#/meus">Meus cursos<span class="n" id="n-my" hidden></span></a>
       <a class="tab" data-tab="cert" href="#/certificados">Certificados<span class="n" id="n-cert" hidden></span></a>
     </nav>
@@ -290,6 +329,297 @@ th{background:var(--surface2)}
 <main id="app"></main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script type="text/plain" id="fc-data">
+# Geometria | Ângulos complementares e suplementares
+F: O ângulo $\alpha$ é suplementar a um ângulo de $125^\circ$. Sabendo que o ângulo $\beta$ é complementar ao ângulo $\alpha$, qual é a medida do ângulo $\beta$?
+V: Suplementar ($180^\circ$): $\alpha + 125^\circ = 180^\circ \Rightarrow \alpha = 55^\circ$.
+Complementar ($90^\circ$): $\alpha + \beta = 90^\circ \Rightarrow 55^\circ + \beta = 90^\circ \Rightarrow \beta = 35^\circ$.
+Resposta: $\beta = 35^\circ$.
+
+# Geometria | Equação com ângulos complementares
+F: Dois ângulos agudos em um projeto são complementares. O primeiro mede $(3x + 24^\circ)$ e o segundo mede $(4x - 18^\circ)$. Qual é o valor de $x$ e quanto mede cada ângulo?
+V: Soma $= 90^\circ$: $(3x + 24) + (4x - 18) = 90$.
+$7x + 6 = 90 \Rightarrow 7x = 84 \Rightarrow x = 12$.
+Ângulo 1: $3(12) + 24 = 60^\circ$. Ângulo 2: $4(12) - 18 = 30^\circ$.
+
+# Geometria | Área e perímetro de retângulo
+F: Um terreno retangular tem comprimento igual ao triplo de sua largura. Sabendo que o perímetro é $80\text{ m}$, qual é a área total desse terreno?
+V: Largura $= x$; comprimento $= 3x$.
+Perímetro: $2(x) + 2(3x) = 80 \Rightarrow 8x = 80 \Rightarrow x = 10\text{ m}$.
+Dimensões: $10\text{ m}$ por $30\text{ m}$.
+Área: $10 \times 30 = 300\text{ m}^2$.
+
+# Geometria | Triângulo e soma dos ângulos internos
+F: Em um triângulo, os ângulos internos medem $x$, $2x$ e $(x + 20^\circ)$. Qual é o valor de $x$ e o tipo de triângulo quanto aos ângulos?
+V: A soma dos ângulos internos de um triângulo é $180^\circ$.
+$x + 2x + x + 20 = 180 \Rightarrow 4x = 160 \Rightarrow x = 40^\circ$.
+Ângulos: $40^\circ$, $80^\circ$ e $60^\circ$. Todos menores que $90^\circ$: triângulo acutângulo.
+
+# Física | Conversão de unidades
+F: Como converter a velocidade de $\text{km/h}$ para $\text{m/s}$ e vice-versa? Qual é o valor em $\text{m/s}$ de um carro a $108\text{ km/h}$?
+V: $\text{km/h} \rightarrow \text{m/s}$: divida por $3,6$.
+$\text{m/s} \rightarrow \text{km/h}$: multiplique por $3,6$.
+Cálculo: $108 \div 3,6 = 30\text{ m/s}$.
+
+# Física | Velocidade média em etapas
+F: Um ônibus percorre os primeiros $100\text{ km}$ de uma viagem em $2\text{ horas}$ e os $80\text{ km}$ seguintes em $1\text{ hora}$. Qual a velocidade média no percurso total?
+V: Distância total: $100 + 80 = 180\text{ km}$. Tempo total: $2 + 1 = 3\text{ h}$.
+$V_m = \frac{\Delta S}{\Delta t} = \frac{180}{3} = 60\text{ km/h}$.
+
+# Física | Tempo com velocidade constante
+F: Um atleta corre com velocidade escalar média constante de $4\text{ m/s}$. Quanto tempo (em minutos) ele leva para percorrer $2,4\text{ km}$?
+V: Distância em metros: $2,4\text{ km} = 2400\text{ m}$.
+$\Delta t = \frac{\Delta S}{V_m} = \frac{2400}{4} = 600\text{ s}$.
+Em minutos: $600 \div 60 = 10\text{ minutos}$.
+
+# Química | Decomposição e conservação de massa
+F: Na decomposição do carbonato de cálcio ($\text{CaCO}_3 \rightarrow \text{CaO} + \text{CO}_2$), $100\text{ g}$ de $\text{CaCO}_3$ produzem $56\text{ g}$ de $\text{CaO}$. Qual a massa de $\text{CO}_2$ liberada ao decompor $50\text{ g}$ de $\text{CaCO}_3$?
+V: Lei de Lavoisier: $100\text{ g } \text{CaCO}_3 = 56\text{ g } \text{CaO} + 44\text{ g } \text{CO}_2$.
+$50\text{ g}$ é metade de $100\text{ g}$, então forma metade do produto: $44 \div 2 = 22\text{ g}$ de $\text{CO}_2$.
+
+# Química | Estequiometria com massa molar
+F: Dada a reação balanceada $\text{N}_2 + 3\text{H}_2 \rightarrow 2\text{NH}_3$ (massas molares: $\text{N}_2 = 28\text{ g/mol}$, $\text{H}_2 = 2\text{ g/mol}$), qual a massa de hidrogênio necessária para reagir completamente com $56\text{ g}$ de nitrogênio?
+V: Proporção: $1\text{ mol } \text{N}_2 : 3\text{ mols } \text{H}_2$.
+Em massa: $28\text{ g}$ de $\text{N}_2$ reagem com $3 \times 2 = 6\text{ g}$ de $\text{H}_2$.
+$56\text{ g}$ é o dobro de $28\text{ g}$, logo: $2 \times 6 = 12\text{ g}$ de $\text{H}_2$.
+
+# Química | Rendimento de reação
+F: A queima do metano segue $\text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O}$. Teoricamente, $16\text{ g}$ de metano produzem $44\text{ g}$ de $\text{CO}_2$. Se o rendimento real foi de $80\%$, qual massa de $\text{CO}_2$ foi obtida?
+V: Rendimento teórico ($100\%$): $44\text{ g}$ de $\text{CO}_2$.
+Rendimento real ($80\%$): $44 \times 0,80 = 35,2\text{ g}$ de $\text{CO}_2$.
+
+# Matemática | Porcentagem sucessiva
+F: Um produto de R¤ 200 recebe 15% de desconto. Depois, o preço com desconto sofre um aumento de 10%. Qual o preço final?
+V: Desconto de 15%: $200 \times 0,85 = $ R¤ 170.
+Aumento de 10%: $170 \times 1,10 = $ R¤ 187.
+Atenção: não dá para somar −15% + 10%. O resultado equivale a −6,5% sobre o preço original.
+
+# Matemática | Regra de três inversa
+F: Cinco operários constroem um muro em 12 dias. Com 10 operários trabalhando no mesmo ritmo, em quantos dias o muro fica pronto?
+V: Mais operários, menos dias: grandezas inversamente proporcionais.
+$5 \times 12 = 10 \times x \Rightarrow x = 6$ dias.
+
+# Matemática | Equação do 2º grau
+F: Resolva $x^2 - 5x + 6 = 0$.
+V: $\Delta = b^2 - 4ac = 25 - 24 = 1$.
+$x = \frac{5 \pm 1}{2} \Rightarrow x = 3$ ou $x = 2$.
+Conferência: soma das raízes $= -b/a = 5$ e produto $= c/a = 6$.
+
+# Matemática | Teorema de Pitágoras
+F: Uma escada de $5\text{ m}$ está apoiada em uma parede, com a base a $3\text{ m}$ da parede. A que altura da parede a escada toca?
+V: Hipotenusa$^2$ = cateto$^2$ + cateto$^2$.
+$5^2 = 3^2 + h^2 \Rightarrow h^2 = 25 - 9 = 16 \Rightarrow h = 4\text{ m}$.
+(Trio pitagórico 3-4-5.)
+
+# Matemática | Média, mediana e moda
+F: Em uma prova, cinco alunos tiraram 3, 5, 5, 7 e 10. Calcule a média, a mediana e a moda.
+V: Média: $(3+5+5+7+10) \div 5 = 30 \div 5 = 6$.
+Mediana (valor central, dados em ordem): $5$.
+Moda (valor mais frequente): $5$.
+
+# Matemática | Probabilidade com dois dados
+F: Ao lançar dois dados honestos, qual a probabilidade de a soma dos resultados ser 7?
+V: Total de resultados: $6 \times 6 = 36$.
+Combinações com soma 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) = 6.
+$P = \frac{6}{36} = \frac{1}{6} \approx 16,7\%$.
+
+# Matemática | Juros simples
+F: Um capital de R¤ 1.000 é aplicado a juros simples de 2% ao mês durante 6 meses. Qual o juro e o montante?
+V: $J = C \cdot i \cdot t = 1000 \times 0,02 \times 6 = $ R¤ 120.
+Montante: $M = C + J = $ R¤ 1.120.
+
+# Matemática | Círculo: comprimento e área
+F: Um círculo tem raio de $7\text{ cm}$. Usando $\pi \approx 3,14$, calcule o comprimento da circunferência e a área.
+V: Comprimento: $C = 2\pi r = 2 \times 3,14 \times 7 = 43,96\text{ cm}$.
+Área: $A = \pi r^2 = 3,14 \times 49 = 153,86\text{ cm}^2$.
+
+# Matemática | Progressão aritmética
+F: Em uma PA, $a_1 = 3$ e razão $r = 4$. Qual o 10º termo e a soma dos 10 primeiros termos?
+V: $a_n = a_1 + (n-1)r \Rightarrow a_{10} = 3 + 9 \times 4 = 39$.
+$S_n = \frac{(a_1 + a_n) \cdot n}{2} = \frac{(3 + 39) \times 10}{2} = 210$.
+
+# Matemática | Função afim
+F: Uma corrida de táxi custa R¤ 5 de bandeirada mais R¤ 3 por km rodado. Escreva a função e calcule o preço de 12 km.
+V: $f(x) = 3x + 5$ (coeficiente angular 3 = custo por km; coeficiente linear 5 = valor fixo).
+$f(12) = 3 \times 12 + 5 = $ R¤ 41.
+
+# Matemática | Volume e capacidade
+F: Uma caixa-d'água tem $2\text{ m}$ de comprimento, $3\text{ m}$ de largura e $1,5\text{ m}$ de altura. Quantos litros cabem nela?
+V: $V = 2 \times 3 \times 1,5 = 9\text{ m}^3$.
+Como $1\text{ m}^3 = 1000\text{ L}$: $9 \times 1000 = 9000\text{ L}$.
+
+# Física | MRUA (aceleração constante)
+F: Um carro parte do repouso com aceleração constante de $2\text{ m/s}^2$. Qual a velocidade e a distância percorrida após $10\text{ s}$?
+V: $v = v_0 + at = 0 + 2 \times 10 = 20\text{ m/s}$.
+$S = \frac{a t^2}{2} = \frac{2 \times 100}{2} = 100\text{ m}$.
+
+# Física | Segunda Lei de Newton
+F: Qual a força resultante sobre um corpo de $5\text{ kg}$ que adquire aceleração de $3\text{ m/s}^2$?
+V: $F = m \cdot a = 5 \times 3 = 15\text{ N}$.
+(Força resultante em newtons = massa em kg × aceleração em m/s².)
+
+# Física | Energia cinética
+F: Calcule a energia cinética de uma bola de $2\text{ kg}$ com velocidade de $3\text{ m/s}$.
+V: $E_c = \frac{m v^2}{2} = \frac{2 \times 3^2}{2} = 9\text{ J}$.
+Dobrar a velocidade quadruplica a energia cinética.
+
+# Física | Lei de Ohm e potência
+F: Um resistor de $20\ \Omega$ é percorrido por corrente de $0,5\text{ A}$. Qual a tensão sobre ele e a potência dissipada?
+V: Lei de Ohm: $U = R \cdot i = 20 \times 0,5 = 10\text{ V}$.
+Potência: $P = U \cdot i = 10 \times 0,5 = 5\text{ W}$.
+
+# Física | Densidade
+F: Um objeto tem massa de $200\text{ g}$ e volume de $250\text{ cm}^3$. Qual a densidade? Ele flutua na água ($1\text{ g/cm}^3$)?
+V: $d = \frac{m}{V} = \frac{200}{250} = 0,8\text{ g/cm}^3$.
+Como $0,8 < 1$, o objeto é menos denso que a água e flutua.
+
+# Física | Queda livre
+F: Um objeto é solto do repouso e cai por $3\text{ s}$ (use $g = 10\text{ m/s}^2$, sem resistência do ar). Qual a velocidade final e a altura da queda?
+V: $v = g t = 10 \times 3 = 30\text{ m/s}$.
+$h = \frac{g t^2}{2} = \frac{10 \times 9}{2} = 45\text{ m}$.
+
+# Química | Mol e massa molar
+F: A massa molar da água é $18\text{ g/mol}$ (H = 1; O = 16). Quantos mols e quantas moléculas há em $90\text{ g}$ de água? (Constante de Avogadro: $6 \times 10^{23}$)
+V: $n = \frac{m}{M} = \frac{90}{18} = 5\text{ mol}$.
+Moléculas: $5 \times 6 \times 10^{23} = 3 \times 10^{24}$.
+
+# Química | pH
+F: Uma solução tem $[\text{H}^+] = 10^{-3}\text{ mol/L}$. Qual o pH e qual o caráter da solução?
+V: $\text{pH} = -\log[\text{H}^+] = 3$.
+pH menor que 7 (a 25 °C): solução ácida. pH = 7 é neutro; maior que 7, básico.
+
+# Química | Separação de misturas
+F: Qual método separa: (a) água e areia; (b) óleo e água; (c) sal dissolvido em água?
+V: (a) Filtração (sólido insolúvel + líquido).
+(b) Decantação, com funil de separação (líquidos imiscíveis).
+(c) Destilação simples ou evaporação (sólido dissolvido em líquido).
+
+# Química | Ligações químicas
+F: Qual o tipo de ligação no NaCl e na H₂O? Justifique.
+V: NaCl: ligação iônica, metal + ametal, com transferência de elétrons (Na⁺ e Cl⁻).
+H₂O: ligação covalente, ametais compartilhando pares de elétrons.
+
+# Química | Concentração comum
+F: Dissolvem-se $20\text{ g}$ de sal em água até completar $500\text{ mL}$ de solução. Qual a concentração em $\text{g/L}$?
+V: Volume: $500\text{ mL} = 0,5\text{ L}$.
+$C = \frac{m}{V} = \frac{20}{0,5} = 40\text{ g/L}$.
+
+# Biologia | Fotossíntese
+F: Escreva a equação geral da fotossíntese. Onde ela ocorre e o que é necessário?
+V: $6\text{CO}_2 + 6\text{H}_2\text{O} \rightarrow \text{C}_6\text{H}_{12}\text{O}_6 + 6\text{O}_2$
+Ocorre nos cloroplastos (clorofila) e precisa de luz. Produz glicose e libera oxigênio.
+
+# Biologia | Mitose e meiose
+F: Qual a diferença entre mitose e meiose quanto ao resultado e à função?
+V: Mitose: 2 células-filhas geneticamente idênticas ($2n$); crescimento e regeneração.
+Meiose: 4 células haploides ($n$) geneticamente diferentes; formação de gametas.
+
+# Biologia | Fluxo de energia nas cadeias alimentares
+F: Se os produtores armazenam $10000\text{ kJ}$, quanto chega ao consumidor secundário, segundo a regra dos 10%?
+V: Em cada nível trófico, só cerca de 10% da energia é transferida.
+Produtor $10000 \rightarrow$ consumidor primário $1000 \rightarrow$ consumidor secundário $100\text{ kJ}$.
+
+# Biologia | 1ª Lei de Mendel
+F: No cruzamento $Aa \times Aa$ (A dominante), quais as proporções genotípicas e fenotípicas dos descendentes?
+V: Genótipos: 25% $AA$, 50% $Aa$, 25% $aa$ (1:2:1).
+Fenótipos: 75% dominante e 25% recessivo (3:1).
+
+# Linguagens | Figuras de linguagem
+F: Diferencie metáfora, comparação, metonímia e hipérbole com um exemplo de cada.
+V: Metáfora: comparação implícita ("Seus olhos são um oceano").
+Comparação: com conectivo ("Seus olhos são como um oceano").
+Metonímia: troca por relação de proximidade ("Li Machado de Assis" = a obra).
+Hipérbole: exagero ("Já falei mil vezes").
+
+# Linguagens | Funções da linguagem
+F: Relacione as funções da linguagem ao foco: emotiva, referencial, conativa, poética, fática e metalinguística.
+V: Emotiva: emissor (1ª pessoa, sentimentos).
+Referencial: assunto (informar, 3ª pessoa).
+Conativa: receptor (convencer, imperativo).
+Poética: a própria forma da mensagem.
+Fática: canal ("Alô? Está me ouvindo?").
+Metalinguística: o código (a língua explicando a língua).
+
+# Linguagens | Conectivos e coesão
+F: Que relação de sentido expressam os conectivos: porém, portanto, porque e embora?
+V: Porém (contudo, todavia): oposição.
+Portanto (logo): conclusão.
+Porque (pois): causa ou explicação.
+Embora (conquanto): concessão, uma ressalva que não impede o fato principal.
+
+# Linguagens | Crase
+F: Quando ocorre crase? Dê um truque para testar e dois casos em que ela não é usada.
+V: Crase = preposição "a" + artigo "a(s)". Exemplo: "Vou à escola".
+Teste: troque a palavra feminina por uma masculina. Se surgir "ao", há crase ("Vou ao colégio").
+Não ocorre antes de verbo ("Começou a chover") nem antes de palavra masculina ("Andou a pé").
+
+# Linguagens | Variação linguística
+F: Quais os tipos de variação linguística (diatópica, diastrática, diafásica e diacrônica)?
+V: Diatópica: região ("aipim" × "mandioca").
+Diastrática: grupo social, escolaridade, idade.
+Diafásica: situação de uso, formal ou informal.
+Diacrônica: mudança ao longo do tempo ("vosmecê" → "você").
+
+# História | Revolução Industrial
+F: Onde e quando começou a Revolução Industrial? Cite duas consequências sociais.
+V: Inglaterra, em meados do século XVIII (cerca de 1760), com carvão e máquina a vapor.
+Consequências: urbanização acelerada e formação do proletariado, com longas jornadas e trabalho infantil.
+
+# História | Iluminismo
+F: O que defendia o Iluminismo e qual a ideia central de Locke, Montesquieu, Rousseau e Voltaire?
+V: Século XVIII: a razão contra o absolutismo e os privilégios.
+Locke: direitos naturais (vida, liberdade, propriedade).
+Montesquieu: separação dos poderes.
+Rousseau: contrato social e soberania popular.
+Voltaire: liberdade de expressão e tolerância religiosa.
+Influenciou a Revolução Francesa (1789).
+
+# História | Escravidão e abolição no Brasil
+F: Ordene as leis do processo de abolição da escravidão no Brasil.
+V: 1850: Lei Eusébio de Queirós (fim do tráfico atlântico).
+1871: Lei do Ventre Livre.
+1885: Lei dos Sexagenários.
+1888: Lei Áurea (13 de maio), a abolição definitiva.
+
+# História | Era Vargas
+F: Quais as fases da Era Vargas e qual o marco trabalhista do período?
+V: 1930–34: Governo Provisório. 1934–37: Governo Constitucional. 1937–45: Estado Novo (ditadura).
+Marcos: voto feminino (1932) e a CLT (Consolidação das Leis do Trabalho, 1943).
+
+# História | Guerra Fria
+F: O que foi a Guerra Fria e por que foi "fria"?
+V: Disputa entre EUA (capitalismo) e URSS (socialismo), de cerca de 1947 a 1991.
+"Fria" porque não houve confronto militar direto entre as superpotências: corrida armamentista e espacial, guerras indiretas (Coreia, Vietnã) e o Muro de Berlim (1961–1989).
+
+# História | Constituição de 1988
+F: Por que a Constituição de 1988 é chamada de "Constituição Cidadã"?
+V: Foi promulgada na redemocratização, após a ditadura militar (1964–1985).
+Ampliou direitos e garantias fundamentais (civis, políticos e sociais) e estabeleceu o voto direto e facultativo a partir dos 16 anos.
+
+# Geografia | Coordenadas e fusos horários
+F: Em Londres (UTC 0), são 15h. Que horas são em São Paulo (UTC−3)? Qual a diferença entre latitude e longitude?
+V: São Paulo está 3 fusos a oeste: $15 - 3 = 12\text{h}$.
+Cada fuso tem $15^\circ$ de longitude ($360^\circ \div 24$) = 1 hora.
+Latitude: paralelos, norte-sul, 0° no Equador. Longitude: meridianos, leste-oeste, 0° em Greenwich.
+
+# Geografia | Domínios morfoclimáticos do Brasil
+F: Associe: Caatinga, Cerrado e Mata Atlântica à sua característica principal.
+V: Caatinga: semiárido do Nordeste, vegetação xerófila e adaptada à seca.
+Cerrado: savana brasileira, solos ácidos, "berço das águas" (nascentes de grandes bacias).
+Mata Atlântica: floresta litorânea, a mais devastada (urbanização e agricultura), hoje restam cerca de 12%.
+
+# Geografia | Fontes de energia
+F: Diferencie energia renovável e não renovável e dê exemplos.
+V: Renováveis: se regeneram em escala humana: hidráulica, solar, eólica e biomassa (etanol).
+Não renováveis: estoques finitos: petróleo, carvão mineral, gás natural e nuclear (urânio).
+No Brasil, a matriz elétrica é predominantemente hidrelétrica.
+
+# Sociologia | Clássicos da Sociologia
+F: Associe Durkheim, Weber e Marx ao seu conceito central.
+V: Durkheim: fato social (normas externas ao indivíduo, coercitivas e gerais).
+Weber: ação social (o sentido que o indivíduo dá à sua ação).
+Marx: luta de classes e materialismo histórico (burguesia × proletariado).
+</script>
 <script>
 (function(){
 'use strict';
@@ -980,6 +1310,195 @@ function practiceView(key){
 }
 
 /* =====================================================
+   FLASHCARDS (modos Aprender e Speed)
+   ===================================================== */
+const FCARDS=(function(){
+  const raw=document.getElementById('fc-data').textContent;
+  return raw.split(/\n\s*\n/).map(b=>b.trim()).filter(Boolean).map((b,i)=>{
+    const L=b.split('\n'), h=L.shift().replace(/^#\s*/,'').split('|'), f=[], v=[]; let cur=f;
+    L.forEach(l=>{ if(/^F:/.test(l)){cur=f;l=l.slice(2);} else if(/^V:/.test(l)){cur=v;l=l.slice(2);} if(l.trim()) cur.push(l.trim()); });
+    return {id:i,d:h[0].trim(),t:(h[1]||'').trim(),f:f.join(' '),v:v};
+  });
+})();
+const FC_DECKS=[...new Set(FCARDS.map(c=>c.d))];
+function fcMath(t){
+  t=t.replace(/\\text\{([^{}]*)\}/g,'$1');
+  t=t.replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g,'<span class="fc-fr"><span>$1</span><span>$2</span></span>');
+  t=t.replace(/\\sqrt\{([^{}]*)\}/g,'√($1)');
+  const sym={'\\Rightarrow':'⇒','\\rightarrow':'→','\\times':'×','\\div':'÷','\\alpha':'α','\\beta':'β','\\Delta':'Δ','\\Omega':'Ω','\\pi':'π','\\cdot':'·','\\approx':'≈','\\pm':'±','\\log':'log','\\circ':'°'};
+  t=t.replace(/\\[A-Za-z]+/g,x=>sym[x]||x).replace(/\\ /g,' ').replace(/\^°/g,'°');
+  t=t.replace(/\^\{([^{}]*)\}/g,'<sup>$1</sup>').replace(/\^([0-9A-Za-z+])/g,'<sup>$1</sup>');
+  t=t.replace(/_\{([^{}]*)\}/g,'<sub>$1</sub>').replace(/_([0-9A-Za-z])/g,'<sub>$1</sub>');
+  return t;
+}
+function fcFmt(s){
+  return esc(s).replace(/\$([^$]+)\$/g,(m,x)=>'<span class="fc-m">'+fcMath(x)+'</span>').replace(/¤/g,()=>'$');
+}
+const FC={screen:'menu',mode:'learn',decks:new Set(),secs:30,n:10,q:[],i:0,flipped:false,timedOut:false,
+  hits:0,errs:0,score:0,streak:0,mastered:0,total:0,remain:1,pts:0,missed:[],t0:0,raf:0,newBest:false};
+function fcStop(){ if(FC.raf) cancelAnimationFrame(FC.raf); FC.raf=0; }
+function fcReset(){ fcStop(); FC.screen='menu'; }
+function fcPool(){ return FCARDS.filter(c=>!FC.decks.size||FC.decks.has(c.d)); }
+function fcSt(){ return Object.assign({hits:0,errs:0,sessions:0,best:0},S.fc||{}); }
+
+function fcMenuView(){
+  const st=fcSt(), pool=fcPool().length, n=FC.n?Math.min(FC.n,pool):pool;
+  const chip=(k,v,l,on)=>`<button class="fl${on?' on':''}" data-fc="${k}" data-v="${v}" aria-pressed="${on}">${l}</button>`;
+  const cnt=d=>FCARDS.filter(c=>c.d===d).length;
+  const mb=(m,t,d)=>`<button class="fc-mode" data-fc="mode" data-v="${m}" aria-pressed="${FC.mode===m}"><b>${t}</b><span>${d}</span></button>`;
+  return `<section class="fc-wrap"><h1>Flashcards</h1>
+    <p class="lead">${FCARDS.length} cartas de matemática, ciências da natureza, linguagens e ciências humanas para o Provão Paulista. Leia a pergunta, pense na resposta, vire o cartão e diga se acertou.</p>
+    <div class="fc-modes">
+      ${mb('learn','📖 Aprender','Sem relógio. Leve o tempo que precisar. Cartas erradas voltam ao fim da fila até você acertar.')}
+      ${mb('speed','⚡ Speed','Uma barra no topo da tela vai se esgotando. Quanto mais rápido você revela e acerta, mais pontos ganha (até 100 por carta).')}
+    </div>
+    <h2 class="sec">Matérias</h2>
+    <div class="fls">${chip('deck','',`Todas (${FCARDS.length})`,!FC.decks.size)}${FC_DECKS.map(d=>chip('deck',esc(d),`${esc(d)} (${cnt(d)})`,FC.decks.has(d))).join('')}</div>
+    <h2 class="sec">Quantidade de cartas</h2>
+    <div class="fls">${[10,20,0].map(v=>chip('n',v,v?v:'Todas',FC.n===v)).join('')}</div>
+    ${FC.mode==='speed'?`<h2 class="sec">Tempo por carta</h2><div class="fls">${[20,30,45].map(v=>chip('secs',v,v+' s',FC.secs===v)).join('')}</div>`:''}
+    <div class="actions" style="margin-top:26px"><button class="btn" data-fc="start" ${pool?'':'disabled'}>Começar (${n} cartas)</button></div>
+    ${st.sessions?`<p class="note">Seu histórico: ${st.hits} acertos e ${st.errs} erros em ${st.sessions} partidas${st.best?`. Recorde no Speed: ${st.best} pontos`:''}.</p>`:''}
+  </section>`;
+}
+function fcSecLeft(){ return Math.ceil(FC.remain*FC.secs); }
+function fcStatsHTML(){
+  const sp=FC.mode==='speed';
+  return `<span class="fc-pill ok">✓ Acertos <b>${FC.hits}</b></span><span class="fc-pill bad">✗ Erros <b>${FC.errs}</b></span>`+
+    (sp?`<span class="fc-pill">★ Pontos <b>${FC.score}</b></span><span class="fc-pill" id="fc-sec">⏱ ${fcSecLeft()} s</span>`:'')+
+    (FC.streak>=3?`<span class="fc-pill">🔥 ${FC.streak} seguidas</span>`:'');
+}
+function fcActionsHTML(){
+  if(!FC.flipped) return `<button class="btn" id="fc-main" data-fc="reveal">${FC.mode==='speed'?'Já sei! Revelar':'Mostrar resposta'}</button>`;
+  if(FC.timedOut) return `<button class="btn" id="fc-main" data-fc="next">Próxima carta →</button>`;
+  return `<button class="btn fc-errb" id="fc-main" data-fc="no">✗ Errei (1)</button><button class="btn fc-okb" data-fc="yes">✓ Acertei (2)</button>`;
+}
+function fcInfoHTML(){
+  if(FC.timedOut) return 'Tempo esgotado: contou como erro, 0 pontos.';
+  if(FC.flipped&&FC.mode==='speed') return `Se acertou, você ganha <b>+${FC.pts}</b> pontos. Seja honesto: o jogo é para você aprender.`;
+  if(FC.flipped) return 'Seja honesto: marque “Errei” para a carta voltar mais tarde.';
+  return 'Dica: espaço ou Enter revela a resposta; 1 = errei, 2 = acertei.';
+}
+function fcPlayView(){
+  const c=FC.q[FC.i], sp=FC.mode==='speed';
+  const prog=sp?FC.i:FC.mastered, lbl=sp?`Carta ${FC.i+1} de ${FC.total}`:`Dominadas ${FC.mastered} de ${FC.total}`;
+  const bk=c.v.map((l,k)=>`<p${k===c.v.length-1?' class="fc-last"':''}>${fcFmt(l)}</p>`).join('');
+  return `${sp?'<div class="fc-timer" aria-hidden="true"><i id="fc-bar"></i></div>':''}
+  <section class="fc-wrap">
+    <div class="fc-top"><h1>${sp?'⚡ Speed':'📖 Aprender'}</h1><button class="btn ghost" data-fc="menu">Sair</button></div>
+    <div class="fc-stats" id="fc-stats">${fcStatsHTML()}</div>
+    <div class="prog"><div class="bar" role="progressbar" aria-label="Progresso" aria-valuemin="0" aria-valuemax="${FC.total}" aria-valuenow="${prog}"><i style="width:${Math.round(prog/FC.total*100)}%"></i></div><span class="meta" style="margin:0">${lbl}</span></div>
+    <div class="fc-card" id="fc-card" data-fc="flip"><div class="fc-in">
+      <div class="fc-face fc-front" id="fc-front"><span class="chip">${esc(c.d)} · ${esc(c.t)}</span><p class="fc-q">${fcFmt(c.f)}</p><p class="fc-hint">Toque no cartão para virar</p></div>
+      <div class="fc-face fc-back" id="fc-backf"><span class="chip">Resposta</span>${bk}</div>
+    </div></div>
+    <div class="fc-actions" id="fc-actions">${fcActionsHTML()}</div>
+    <p class="fc-info" id="fc-info">${fcInfoHTML()}</p>
+  </section>`;
+}
+function fcEndView(){
+  const tot=FC.hits+FC.errs, acc=tot?Math.round(FC.hits/tot*100):0, st=fcSt(), sp=FC.mode==='speed';
+  return `<section class="fc-wrap"><h1>Fim da partida</h1>
+    ${FC.newBest?'<span class="chip">🏆 Novo recorde!</span>':''}
+    <div class="fc-grid">
+      <div class="fc-big"><b style="color:var(--ok)">${FC.hits}</b><span>Acertos</span></div>
+      <div class="fc-big"><b style="color:var(--bad)">${FC.errs}</b><span>Erros</span></div>
+      <div class="fc-big"><b>${acc}%</b><span>Precisão</span></div>
+      ${sp?`<div class="fc-big"><b>${FC.score}</b><span>Pontos (recorde ${st.best})</span></div>`:''}
+    </div>
+    ${FC.missed.length?`<h2 class="sec">Para revisar</h2><ul class="cont">${FC.missed.map(c=>`<li>${esc(c.d)} · ${esc(c.t)}</li>`).join('')}</ul>`:'<p class="lead">Você acertou todas as cartas. 🎉</p>'}
+    <div class="actions"><button class="btn" data-fc="start">Jogar de novo</button>${FC.missed.length?'<button class="btn ghost" data-fc="again">Revisar erros</button>':''}<button class="btn ghost" data-fc="menu">Menu</button></div>
+  </section>`;
+}
+function viewFlash(){ return FC.screen==='play'?fcPlayView():FC.screen==='end'?fcEndView():fcMenuView(); }
+function fcPaint(){ $('#app').innerHTML=viewFlash(); fcAfter(); const m=$('#fc-main'); if(m) m.focus({preventScroll:true}); }
+function fcAfter(){
+  fcStop();
+  if(FC.screen!=='play') return;
+  fcFaces();
+  if(FC.mode==='speed'&&!FC.flipped){ FC.remain=1; FC.t0=performance.now(); FC.raf=requestAnimationFrame(fcTick); }
+}
+function fcFaces(){
+  const f=$('#fc-front'), b=$('#fc-backf'); if(!f||!b) return;
+  f.setAttribute('aria-hidden',FC.flipped?'true':'false'); b.setAttribute('aria-hidden',FC.flipped?'false':'true');
+}
+function fcTick(now){
+  const bar=$('#fc-bar'); if(!bar||FC.screen!=='play') return;
+  const frac=Math.max(0,1-(now-FC.t0)/(FC.secs*1000)), prev=fcSecLeft();
+  FC.remain=frac; bar.style.transform=`scaleX(${frac})`;
+  bar.style.background=frac>.5?'var(--ok)':frac>.25?'var(--hl)':'var(--bad)';
+  const s=$('#fc-sec'); if(s&&fcSecLeft()!==prev) s.textContent='⏱ '+fcSecLeft()+' s';
+  if(frac<=0){ FC.raf=0; fcTimeUp(); return; }
+  FC.raf=requestAnimationFrame(fcTick);
+}
+function fcMiss(c){ if(!FC.missed.includes(c)) FC.missed.push(c); }
+function fcShow(){
+  $('#fc-card').classList.add('flip'); fcFaces();
+  $('#fc-stats').innerHTML=fcStatsHTML(); $('#fc-actions').innerHTML=fcActionsHTML(); $('#fc-info').innerHTML=fcInfoHTML();
+  const m=$('#fc-main'); if(m) m.focus({preventScroll:true});
+}
+function fcReveal(){
+  if(FC.screen!=='play'||FC.flipped) return;
+  if(FC.mode==='speed'){ fcStop(); FC.pts=10+Math.round(90*FC.remain); }
+  FC.flipped=true; fcShow();
+}
+function fcTimeUp(){
+  FC.flipped=true; FC.timedOut=true; FC.errs++; FC.streak=0; FC.remain=0; fcMiss(FC.q[FC.i]);
+  fcShow(); toast('Tempo esgotado!');
+}
+function fcMark(ok){
+  if(FC.screen!=='play'||!FC.flipped||FC.timedOut) return;
+  const c=FC.q[FC.i];
+  if(ok){ FC.hits++; FC.streak++; FC.mastered++; if(FC.mode==='speed') FC.score+=FC.pts; }
+  else{ FC.errs++; FC.streak=0; fcMiss(c); if(FC.mode==='learn') FC.q.push(c); }
+  fcNext();
+}
+function fcNext(){
+  FC.i++; FC.flipped=false; FC.timedOut=false;
+  if(FC.i>=FC.q.length) return fcFinish();
+  fcPaint();
+}
+function fcFinish(){
+  fcStop();
+  const st=fcSt(); st.hits+=FC.hits; st.errs+=FC.errs; st.sessions++;
+  FC.newBest=FC.mode==='speed'&&FC.score>st.best; if(FC.newBest) st.best=FC.score;
+  S.fc=st; save(); FC.screen='end'; fcPaint(); window.scrollTo(0,0);
+}
+function fcStart(pool){
+  pool=shuffle(pool);
+  if(!pool.length){ toast('Nenhuma carta disponível.'); return; }
+  if(!arguments[1]&&FC.n>0) pool=pool.slice(0,FC.n);
+  Object.assign(FC,{screen:'play',q:pool,i:0,flipped:false,timedOut:false,hits:0,errs:0,score:0,streak:0,mastered:0,total:pool.length,missed:[],newBest:false,remain:1});
+  fcPaint(); window.scrollTo(0,0);
+}
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-fc]'); if(!el) return;
+  const a=el.dataset.fc, v=el.dataset.v;
+  if(a==='mode'){ FC.mode=v; fcPaint(); }
+  else if(a==='deck'){ if(!v) FC.decks.clear(); else if(FC.decks.has(v)) FC.decks.delete(v); else FC.decks.add(v); fcPaint(); }
+  else if(a==='n'){ FC.n=+v; fcPaint(); }
+  else if(a==='secs'){ FC.secs=+v; fcPaint(); }
+  else if(a==='start') fcStart(fcPool());
+  else if(a==='again'){ FC.mode='learn'; fcStart(FC.missed.slice(),true); }
+  else if(a==='menu'){ fcReset(); fcPaint(); }
+  else if(a==='reveal'||a==='flip') fcReveal();
+  else if(a==='yes') fcMark(true);
+  else if(a==='no') fcMark(false);
+  else if(a==='next') fcNext();
+});
+document.addEventListener('keydown',e=>{
+  if(FC.screen!=='play'||location.hash.indexOf('#/flash')!==0||e.ctrlKey||e.metaKey||e.altKey) return;
+  const onCtl=e.target&&/^(BUTTON|A|INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName);
+  if((e.key===' '||e.key==='Enter')&&!onCtl){
+    e.preventDefault();
+    if(!FC.flipped) fcReveal(); else if(FC.timedOut) fcNext();
+  }
+  else if(e.key==='1') fcMark(false);
+  else if(e.key==='2') fcMark(true);
+  else if(e.key==='ArrowRight'&&FC.timedOut) fcNext();
+});
+
+/* =====================================================
    ROTEAMENTO E RENDERIZAÇÃO
    ===================================================== */
 let lastHash=null;
@@ -997,11 +1516,13 @@ function render(){
   let parts=[];
   try{ parts=raw.replace(/^#\/?/,'').split('/').filter(Boolean).map(decodeURIComponent); }catch(e){}
   const [a,b,k,d]=parts;
+  if(a!=='flash') fcReset();
   const c=course(b);
   let html='', tab='home';
   if(a==='meus'){ tab='meus'; html=viewMy(); }
   else if(a==='provao'){ tab='provao'; html=viewProvao(); }
   else if(a==='banco'){ tab='banco'; html=viewBanco(); }
+  else if(a==='flash'){ tab='flash'; html=viewFlash(); }
   else if(a==='praticar'){ tab=b==='banco'?'banco':'provao'; html=practiceView(b); }
   else if(a==='certificados'){ tab='cert'; html=viewCerts(); }
   else if(a==='certificado'&&c){ tab='cert'; html=certView(c); }
@@ -1012,6 +1533,7 @@ function render(){
     else html=courseShell(c,null,overview(c));
   } else html=viewHome();
   $('#app').innerHTML=html;
+  if(a==='flash') fcAfter();
   chrome(tab);
   if(changed){
     window.scrollTo(0,0);
